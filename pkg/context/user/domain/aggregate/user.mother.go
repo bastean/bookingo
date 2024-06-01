@@ -1,7 +1,7 @@
 package aggregate
 
 import (
-	"github.com/bastean/codexgo/pkg/context/user/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/user/domain/valueobj"
 )
 
 func RandomUser() *User {

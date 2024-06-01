@@ -1,8 +1,8 @@
 package auth
 
 import (
-	"github.com/bastean/codexgo/pkg/cmd/server/service/env"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/authentications"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/env"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/authentications"
 )
 
 type Payload authentications.Payload

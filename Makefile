@@ -145,7 +145,7 @@ release-dry-changelog:
 
 build: generate-required lint
 	rm -rf build/
-	go build -ldflags="-s -w" -o build/codexgo ./cmd/codexgo
+	go build -ldflags="-s -w" -o build/bookingo ./cmd/bookingo
 
 #* ~~~~~~ENVs~~~~~~
 
@@ -179,14 +179,14 @@ docker-it:
 
 compose-dev-down:
 	${compose-env} .env.dev down
-	docker volume rm codexgo-database-dev -f
+	docker volume rm bookingo-database-dev -f
 
 compose-dev: compose-dev-down
 	${compose-env} .env.dev up
 
 compose-test-down:
 	${compose-env} .env.test down
-	docker volume rm codexgo-database-test -f
+	docker volume rm bookingo-database-test -f
 
 compose-test-integration: compose-test-down
 	${compose-env} .env.test --env-file .env.demo.test.integration up --exit-code-from server

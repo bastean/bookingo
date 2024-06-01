@@ -1,9 +1,9 @@
 package send
 
 import (
-	"github.com/bastean/codexgo/pkg/context/notify/domain/model"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/types"
+	"github.com/bastean/bookingo/pkg/context/notify/domain/model"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/types"
 )
 
 type Send struct {

@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/bastean/codexgo/pkg/context/user/application/read"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/application/read"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
 )
 
 type ReadQuery = read.Query

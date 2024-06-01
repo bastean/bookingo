@@ -3,8 +3,8 @@ package send
 import (
 	"encoding/json"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/messages"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/services"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/messages"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
 var CreatedSucceededEventTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRoutingKey{

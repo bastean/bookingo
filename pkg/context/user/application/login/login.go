@@ -1,10 +1,10 @@
 package login
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/user/domain/aggregate"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
-	"github.com/bastean/codexgo/pkg/context/user/domain/service"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/user/domain/aggregate"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/domain/service"
 )
 
 type Login struct {

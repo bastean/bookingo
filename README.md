@@ -1,23 +1,26 @@
 <h1 align="center">
 
-<!-- [![logo readme](https://raw.githubusercontent.com/bastean/codexgo/main/assets/readme/logo-readme.png)](https://github.com/bastean) -->
+<!-- [![logo](https://raw.githubusercontent.com/bastean/bookingo/main/assets/readme/logo.png)](https://github.com/bastean) -->
 
-[![logo readme](assets/readme/logo-readme.png)](https://github.com/bastean/codexgo)
+[![logo](assets/readme/logo.png)](https://github.com/bastean/bookingo)
 
 </h1>
 
 <div align="center">
 
-> Example CRUD project applying Hexagonal Architecture, Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Command Query Responsibility Segregation (CQRS), Behavior-Driven Development (BDD), Continuous Integration (CI), and more... in Go.
+> Booking system made with Go.
 
 </div>
+
+> [!NOTE]
+> bookingo is still in the early stages of development.
 
 <br />
 
 <div align="center">
 
 [![license MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![go report card](https://goreportcard.com/badge/github.com/bastean/codexgo)](https://goreportcard.com/report/github.com/bastean/codexgo)
+[![go report card](https://goreportcard.com/badge/github.com/bastean/bookingo)](https://goreportcard.com/report/github.com/bastean/bookingo)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://github.com/commitizen/cz-cli)
 [![release it](https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9A%80-release--it-orange.svg)](https://github.com/release-it/release-it)
 
@@ -25,16 +28,16 @@
 
 <div align="center">
 
-[![upgrade workflow](https://github.com/bastean/codexgo/actions/workflows/upgrade.yml/badge.svg)](https://github.com/bastean/codexgo/actions/workflows/upgrade.yml)
-[![ci workflow](https://github.com/bastean/codexgo/actions/workflows/ci.yml/badge.svg)](https://github.com/bastean/codexgo/actions/workflows/ci.yml)
-[![release workflow](https://github.com/bastean/codexgo/actions/workflows/release.yml/badge.svg)](https://github.com/bastean/codexgo/actions/workflows/release.yml)
+[![upgrade workflow](https://github.com/bastean/bookingo/actions/workflows/upgrade.yml/badge.svg)](https://github.com/bastean/bookingo/actions/workflows/upgrade.yml)
+[![ci workflow](https://github.com/bastean/bookingo/actions/workflows/ci.yml/badge.svg)](https://github.com/bastean/bookingo/actions/workflows/ci.yml)
+[![release workflow](https://github.com/bastean/bookingo/actions/workflows/release.yml/badge.svg)](https://github.com/bastean/bookingo/actions/workflows/release.yml)
 
 </div>
 
 <div align="center">
 
-[![go reference](https://pkg.go.dev/badge/github.com/bastean/codexgo.svg)](https://pkg.go.dev/github.com/bastean/codexgo)
-[![github release](https://img.shields.io/github/v/release/bastean/codexgo.svg)](https://github.com/bastean/codexgo/releases)
+[![go reference](https://pkg.go.dev/badge/github.com/bastean/bookingo.svg)](https://pkg.go.dev/github.com/bastean/bookingo)
+[![github release](https://img.shields.io/github/v/release/bastean/bookingo.svg)](https://github.com/bastean/bookingo/releases)
 
 </div>
 
@@ -189,13 +192,13 @@ make commit
 #### HTTPS
 
 ```bash
-git clone https://github.com/bastean/codexgo.git && cd codexgo
+git clone https://github.com/bastean/bookingo.git && cd bookingo
 ```
 
 #### SSH
 
 ```bash
-git clone git@github.com:bastean/codexgo.git && cd codexgo
+git clone git@github.com:bastean/bookingo.git && cd bookingo
 ```
 
 ### Initialize
@@ -345,7 +348,7 @@ make compose-prod
 ## Contributing
 
 - Contributions and Feedback are always welcome!
-  - [Open a new issue](https://github.com/bastean/codexgo/issues/new/choose)
+  - [Open a new issue](https://github.com/bastean/bookingo/issues/new/choose)
 
 ## License
 

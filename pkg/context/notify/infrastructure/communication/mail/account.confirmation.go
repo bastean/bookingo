@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"net/smtp"
 
-	"github.com/bastean/codexgo/pkg/context/notify/application/send"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/transports"
+	"github.com/bastean/bookingo/pkg/context/notify/application/send"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/transports"
 )
 
 type AccountConfirmation struct {

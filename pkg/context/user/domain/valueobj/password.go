@@ -1,8 +1,8 @@
 package valueobj
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/go-playground/validator/v10"
 )
 

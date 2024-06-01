@@ -3,13 +3,13 @@ package delete_test
 import (
 	"testing"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/types"
-	"github.com/bastean/codexgo/pkg/context/user/application/delete"
-	"github.com/bastean/codexgo/pkg/context/user/domain/aggregate"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
-	"github.com/bastean/codexgo/pkg/context/user/infrastructure/cryptographic"
-	"github.com/bastean/codexgo/pkg/context/user/infrastructure/persistence"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/types"
+	"github.com/bastean/bookingo/pkg/context/user/application/delete"
+	"github.com/bastean/bookingo/pkg/context/user/domain/aggregate"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/infrastructure/cryptographic"
+	"github.com/bastean/bookingo/pkg/context/user/infrastructure/persistence"
 	"github.com/stretchr/testify/suite"
 )
 

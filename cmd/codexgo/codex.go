@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/bastean/codexgo/pkg/cmd/server"
+	"github.com/bastean/bookingo/pkg/cmd/server"
 )
 
-const cli = "codexgo"
+const cli = "bookingo"
 
 var port string
 

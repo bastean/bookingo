@@ -1,15 +1,15 @@
 package user
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/user/application/create"
-	"github.com/bastean/codexgo/pkg/context/user/application/delete"
-	"github.com/bastean/codexgo/pkg/context/user/application/login"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/user/application/create"
+	"github.com/bastean/bookingo/pkg/context/user/application/delete"
+	"github.com/bastean/bookingo/pkg/context/user/application/login"
 
-	"github.com/bastean/codexgo/pkg/context/user/application/read"
-	"github.com/bastean/codexgo/pkg/context/user/application/update"
-	"github.com/bastean/codexgo/pkg/context/user/application/verify"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/application/read"
+	"github.com/bastean/bookingo/pkg/context/user/application/update"
+	"github.com/bastean/bookingo/pkg/context/user/application/verify"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
 )
 
 var Create *create.CommandHandler

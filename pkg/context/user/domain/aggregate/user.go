@@ -1,11 +1,11 @@
 package aggregate
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/aggregates"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/user/domain/message"
-	"github.com/bastean/codexgo/pkg/context/user/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/aggregates"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/user/domain/message"
+	"github.com/bastean/bookingo/pkg/context/user/domain/valueobj"
 )
 
 type User struct {

@@ -1,8 +1,8 @@
 package valueobj
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/valueobjs"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/valueobjs"
 )
 
 func NewEmail(email string) (models.ValueObject[string], error) {

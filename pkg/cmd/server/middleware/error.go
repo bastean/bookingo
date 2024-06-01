@@ -3,9 +3,9 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/bastean/codexgo/pkg/cmd/server/service/errors"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/logger"
-	"github.com/bastean/codexgo/pkg/cmd/server/util/reply"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/errors"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/logger"
+	"github.com/bastean/bookingo/pkg/cmd/server/util/reply"
 	"github.com/gin-gonic/gin"
 )
 

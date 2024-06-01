@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/bastean/codexgo/pkg/context/notify/application/send"
-	"github.com/bastean/codexgo/pkg/context/notify/domain/model"
-	"github.com/bastean/codexgo/pkg/context/notify/infrastructure/communication/mail"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/transports"
+	"github.com/bastean/bookingo/pkg/context/notify/application/send"
+	"github.com/bastean/bookingo/pkg/context/notify/domain/model"
+	"github.com/bastean/bookingo/pkg/context/notify/infrastructure/communication/mail"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/transports"
 	"github.com/stretchr/testify/suite"
 )
 

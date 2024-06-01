@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/services"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
 type Meta map[string]any

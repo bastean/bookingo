@@ -1,11 +1,11 @@
 package update
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/types"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
-	"github.com/bastean/codexgo/pkg/context/user/domain/service"
-	"github.com/bastean/codexgo/pkg/context/user/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/types"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/domain/service"
+	"github.com/bastean/bookingo/pkg/context/user/domain/valueobj"
 )
 
 type Update struct {

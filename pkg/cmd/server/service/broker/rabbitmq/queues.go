@@ -1,7 +1,7 @@
 package rabbitmq
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/queues"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/queues"
 )
 
 var NotifySendAccountConfirmationQueue = &queues.Queue{

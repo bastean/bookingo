@@ -4,12 +4,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/messages"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/queues"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/routers"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/communications"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/loggers"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/messages"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/queues"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/routers"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/communications"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/loggers"
 	"github.com/stretchr/testify/suite"
 )
 

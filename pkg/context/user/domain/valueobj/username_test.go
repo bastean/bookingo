@@ -3,8 +3,8 @@ package valueobj_test
 import (
 	"testing"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/user/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/user/domain/valueobj"
 	"github.com/stretchr/testify/suite"
 )
 

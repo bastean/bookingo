@@ -1,7 +1,7 @@
 package errors
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 )
 
 type InvalidValue = errors.InvalidValue

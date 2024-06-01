@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/user/domain/aggregate"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/user/domain/aggregate"
 )
 
 type RepositorySearchCriteria struct {

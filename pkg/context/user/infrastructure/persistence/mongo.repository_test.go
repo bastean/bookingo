@@ -4,12 +4,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/persistences"
-	"github.com/bastean/codexgo/pkg/context/user/domain/aggregate"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
-	"github.com/bastean/codexgo/pkg/context/user/domain/valueobj"
-	"github.com/bastean/codexgo/pkg/context/user/infrastructure/cryptographic"
-	"github.com/bastean/codexgo/pkg/context/user/infrastructure/persistence"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/persistences"
+	"github.com/bastean/bookingo/pkg/context/user/domain/aggregate"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/user/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/user/infrastructure/cryptographic"
+	"github.com/bastean/bookingo/pkg/context/user/infrastructure/persistence"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -22,7 +22,7 @@ type UserMongoRepositoryTestSuite struct {
 func (suite *UserMongoRepositoryTestSuite) SetupTest() {
 	uri := os.Getenv("DATABASE_URI")
 
-	databaseName := "codexgo-test"
+	databaseName := "bookingo-test"
 
 	database, _ := persistences.NewMongoDatabase(uri, databaseName)
 

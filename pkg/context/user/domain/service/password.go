@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
 )
 
 func IsPasswordInvalid(hashing model.Hashing, hashed, plain string) error {

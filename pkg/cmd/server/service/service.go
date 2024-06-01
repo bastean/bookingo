@@ -3,17 +3,17 @@ package service
 import (
 	"context"
 
-	"github.com/bastean/codexgo/pkg/cmd/server/service/broker/rabbitmq"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/database/mongodb"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/env"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/logger"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/notify"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/smtp"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/user"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/persistences"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/transports"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/broker/rabbitmq"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/database/mongodb"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/env"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/logger"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/notify"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/smtp"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/user"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/persistences"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/transports"
 )
 
 var (
@@ -65,7 +65,7 @@ func Start() error {
 
 	MongoDB, err = mongodb.New(
 		env.Database.URI,
-		"codexgo",
+		"bookingo",
 	)
 
 	if err != nil {

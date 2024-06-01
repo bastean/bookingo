@@ -4,7 +4,7 @@ import (
 	"embed"
 	"net/http"
 
-	"github.com/bastean/codexgo/pkg/cmd/server/middleware"
+	"github.com/bastean/bookingo/pkg/cmd/server/middleware"
 	"github.com/gin-gonic/gin"
 )
 

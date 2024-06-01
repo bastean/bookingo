@@ -3,10 +3,10 @@ package page
 import (
 	"net/http"
 
-	"github.com/bastean/codexgo/pkg/cmd/server/component/page/dashboard"
-	"github.com/bastean/codexgo/pkg/cmd/server/service/user"
-	"github.com/bastean/codexgo/pkg/cmd/server/util/errs"
-	"github.com/bastean/codexgo/pkg/cmd/server/util/key"
+	"github.com/bastean/bookingo/pkg/cmd/server/component/page/dashboard"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/user"
+	"github.com/bastean/bookingo/pkg/cmd/server/util/errs"
+	"github.com/bastean/bookingo/pkg/cmd/server/util/key"
 	"github.com/gin-gonic/gin"
 )
 

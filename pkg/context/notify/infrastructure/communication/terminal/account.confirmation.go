@@ -3,8 +3,8 @@ package terminal
 import (
 	"fmt"
 
-	"github.com/bastean/codexgo/pkg/context/notify/application/send"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/notify/application/send"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 )
 
 type AccountConfirmation struct {

@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/queues"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/queues"
 )
 
 func HasNoQueue(queues []*queues.Queue, queue *queues.Queue) bool {

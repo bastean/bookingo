@@ -1,9 +1,9 @@
 package models
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/messages"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/queues"
-	"github.com/bastean/codexgo/pkg/context/shared/domain/routers"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/messages"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/queues"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/routers"
 )
 
 type Broker interface {

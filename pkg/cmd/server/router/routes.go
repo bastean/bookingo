@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/bastean/codexgo/pkg/cmd/server/handler/page"
-	"github.com/bastean/codexgo/pkg/cmd/server/handler/user"
-	"github.com/bastean/codexgo/pkg/cmd/server/middleware"
+	"github.com/bastean/bookingo/pkg/cmd/server/handler/page"
+	"github.com/bastean/bookingo/pkg/cmd/server/handler/user"
+	"github.com/bastean/bookingo/pkg/cmd/server/middleware"
 )
 
 func InitRoutes() {

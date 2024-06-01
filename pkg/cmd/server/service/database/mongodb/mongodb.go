@@ -3,8 +3,8 @@ package mongodb
 import (
 	"context"
 
-	"github.com/bastean/codexgo/pkg/context/shared/domain/errors"
-	"github.com/bastean/codexgo/pkg/context/shared/infrastructure/persistences"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
+	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/persistences"
 )
 
 func New(uri, name string) (*persistences.MongoDB, error) {

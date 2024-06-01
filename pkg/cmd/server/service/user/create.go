@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/bastean/codexgo/pkg/context/shared/domain/models"
-	"github.com/bastean/codexgo/pkg/context/user/application/create"
-	"github.com/bastean/codexgo/pkg/context/user/domain/model"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
+	"github.com/bastean/bookingo/pkg/context/user/application/create"
+	"github.com/bastean/bookingo/pkg/context/user/domain/model"
 )
 
 type CreateCommand = create.Command
