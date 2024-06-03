@@ -19,11 +19,11 @@ var Database = &struct {
 }
 
 var SMTP = &struct {
-	Host, Port, Username, Password, ServerURL string
+	Host, Port, Hotelname, Password, ServerURL string
 }{
 	Host:      os.Getenv("SMTP_HOST"),
 	Port:      os.Getenv("SMTP_PORT"),
-	Username:  os.Getenv("SMTP_USERNAME"),
+	Hotelname: os.Getenv("SMTP_HotelNAME"),
 	Password:  os.Getenv("SMTP_PASSWORD"),
 	ServerURL: ServerURL,
 }

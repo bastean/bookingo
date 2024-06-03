@@ -22,7 +22,7 @@ func (suite *NotifyMailAccountConfirmationTransportTestSuite) SetupTest() {
 	suite.smtp = transports.NewSMTP(
 		os.Getenv("SMTP_HOST"),
 		os.Getenv("SMTP_PORT"),
-		os.Getenv("SMTP_USERNAME"),
+		os.Getenv("SMTP_HotelNAME"),
 		os.Getenv("SMTP_PASSWORD"),
 		os.Getenv("URL"),
 	)

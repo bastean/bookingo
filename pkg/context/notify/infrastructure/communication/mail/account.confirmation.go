@@ -20,15 +20,15 @@ func (client *AccountConfirmation) Submit(data any) error {
 
 	var message bytes.Buffer
 
-	headers := fmt.Sprintf("From: %s\n"+"To: %s\n"+"Subject: Account Confirmation", client.Username, account.Email)
+	headers := fmt.Sprintf("From: %s\n"+"To: %s\n"+"Subject: Account Confirmation", client.Hotelname, account.Email)
 
 	message.Write([]byte(fmt.Sprintf("%s\n%s\n", headers, client.MIMEHeaders)))
 
 	confirmationLink := fmt.Sprintf("%s/verify/%s", client.ServerURL, account.Id)
 
-	AccountConfirmationTemplate(account.Username, confirmationLink).Render(context.Background(), &message)
+	AccountConfirmationTemplate(account.Hotelname, confirmationLink).Render(context.Background(), &message)
 
-	err := smtp.SendMail(client.SMTPServerURL, client.Auth, client.Username, []string{account.Email}, message.Bytes())
+	err := smtp.SendMail(client.SMTPServerURL, client.Auth, client.Hotelname, []string{account.Email}, message.Bytes())
 
 	if err != nil {
 		return errors.NewInternal(&errors.Bubble{

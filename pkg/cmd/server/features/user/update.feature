@@ -1,9 +1,9 @@
-Feature: Update a User account
+Feature: Update a Hotel account
 
   Scenario: Create a valid non existing account
     Given I am on / page
     Then I fill the Email with update@example.com
-    * I fill the Username with update
+    * I fill the Hotelname with update
     * I fill the Password with update@example
     * I fill the Confirm Password with update@example
     * I check the I agree to the terms and conditions
@@ -22,7 +22,7 @@ Feature: Update a User account
   Scenario: Update a valid existing account
     Given I am on /dashboard page
     Then I fill the Email with updated@example.com
-    * I fill the Username with updated
+    * I fill the Hotelname with updated
     * I fill the New Password with updated@example
     * I fill the Confirm Password with updated@example
     * I fill the Current Password with update@example

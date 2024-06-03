@@ -1,8 +1,8 @@
 package router
 
 import (
+	"github.com/bastean/bookingo/pkg/cmd/server/handler/hotel"
 	"github.com/bastean/bookingo/pkg/cmd/server/handler/page"
-	"github.com/bastean/bookingo/pkg/cmd/server/handler/user"
 	"github.com/bastean/bookingo/pkg/cmd/server/middleware"
 )
 
@@ -12,14 +12,14 @@ func InitRoutes() {
 	public := router.Group("/")
 
 	public.GET("/", page.Home())
-	public.PUT("/", user.Create())
-	public.POST("/", user.Login())
+	public.PUT("/", hotel.Create())
+	public.POST("/", hotel.Login())
 
-	public.GET("/verify/:id", user.Verify())
+	public.GET("/verify/:id", hotel.Verify())
 
 	auth := public.Group("/dashboard", middleware.VerifyAuthentication())
 
 	auth.GET("/", page.Dashboard())
-	auth.PATCH("/", user.Update())
-	auth.DELETE("/", user.Delete())
+	auth.PATCH("/", hotel.Update())
+	auth.DELETE("/", hotel.Delete())
 }

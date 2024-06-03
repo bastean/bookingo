@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/bastean/bookingo/pkg/cmd/server/component/page/dashboard"
-	"github.com/bastean/bookingo/pkg/cmd/server/service/user"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/hotel"
 	"github.com/bastean/bookingo/pkg/cmd/server/util/errs"
 	"github.com/bastean/bookingo/pkg/cmd/server/util/key"
 	"github.com/gin-gonic/gin"
@@ -12,20 +12,20 @@ import (
 
 func Dashboard() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		id, exists := c.Get(key.UserId)
+		id, exists := c.Get(key.HotelId)
 
 		if !exists {
-			c.Error(errs.MissingKey(key.UserId, "Dashboard"))
+			c.Error(errs.MissingKey(key.HotelId, "Dashboard"))
 			c.Redirect(http.StatusFound, "/")
 			c.Abort()
 			return
 		}
 
-		query := new(user.ReadQuery)
+		query := new(hotel.ReadQuery)
 
 		query.Id = id.(string)
 
-		user, err := user.Read.Handle(query)
+		hotel, err := hotel.Read.Handle(query)
 
 		if err != nil {
 			c.Error(err)
@@ -34,6 +34,6 @@ func Dashboard() gin.HandlerFunc {
 			return
 		}
 
-		dashboard.Page(user).Render(c.Request.Context(), c.Writer)
+		dashboard.Page(hotel).Render(c.Request.Context(), c.Writer)
 	}
 }

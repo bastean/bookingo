@@ -18,7 +18,7 @@ script UpdateFormInit(formTagId string) {
                         }
                     ]
                 },
-                Username: {
+                Hotelname: {
                     optional   : true,
                     rules: [
                         {
@@ -68,7 +68,7 @@ script UpdateFormInit(formTagId string) {
             }
         })
         .api({
-            action: "update user", 
+            action: "update hotel", 
             method: "PATCH",
             onSuccess: function(response, element, xhr) {
                 $.toast({
@@ -92,7 +92,7 @@ script UpdateFormInit(formTagId string) {
     ;
 }
 
-templ UpdateForm(email, username string) {
+templ UpdateForm(email, hotelname string) {
 	<form id={ UpdateFormTagId } class="ui inverted form">
 		<h1 class="ui dividing inverted header">
 			Account settings
@@ -105,10 +105,10 @@ templ UpdateForm(email, username string) {
 			</div>
 		</div>
 		<div class="required field">
-			<label>Username</label>
+			<label>Hotelname</label>
 			<div class="ui inverted transparent left icon input">
-				<i class="user icon"></i>
-				<input type="text" placeholder="Username" name="Username" value={ username }/>
+				<i class="hotel icon"></i>
+				<input type="text" placeholder="Hotelname" name="Hotelname" value={ hotelname }/>
 			</div>
 		</div>
 		<div class="required field">

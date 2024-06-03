@@ -36,8 +36,8 @@ func VerifyAuthentication() gin.HandlerFunc {
 			return
 		}
 
-		if value, exists := claims[key.UserId]; exists {
-			c.Set(key.UserId, value)
+		if value, exists := claims[key.HotelId]; exists {
+			c.Set(key.HotelId, value)
 			c.Next()
 		} else {
 			abort(c)

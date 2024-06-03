@@ -1,9 +1,9 @@
-Feature: Delete a User account
+Feature: Delete a Hotel account
 
   Scenario: Create a valid non existing account
     Given I am on / page
     Then I fill the Email with delete@example.com
-    * I fill the Username with delete
+    * I fill the Hotelname with delete
     * I fill the Password with delete@example
     * I fill the Confirm Password with delete@example
     * I check the I agree to the terms and conditions

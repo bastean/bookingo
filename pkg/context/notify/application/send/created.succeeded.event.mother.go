@@ -8,10 +8,10 @@ import (
 )
 
 var CreatedSucceededEventTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRoutingKey{
-	Module:    "user",
+	Module:    "hotel",
 	Version:   "1",
 	Type:      messages.Type.Event,
-	Aggregate: "user",
+	Aggregate: "hotel",
 	Event:     "created",
 	Status:    messages.Status.Succeeded,
 })
@@ -19,12 +19,12 @@ var CreatedSucceededEventTypeRoutingKey = messages.NewRoutingKey(&messages.Messa
 func RandomEvent() *messages.Message {
 	id := services.Create.UUID()
 	email := services.Create.Email()
-	username := services.Create.Username()
+	hotelname := services.Create.Hotelname()
 
 	attributes := CreatedSucceededEventAttributes{
-		Id:       id,
-		Email:    email,
-		Username: username,
+		Id:        id,
+		Email:     email,
+		Hotelname: hotelname,
 	}
 
 	attributesJson, _ := json.Marshal(attributes)

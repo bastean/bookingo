@@ -6,4 +6,4 @@ var Exp = "exp"
 
 var Id = "id"
 
-var UserId = "userId"
+var HotelId = "hotelId"

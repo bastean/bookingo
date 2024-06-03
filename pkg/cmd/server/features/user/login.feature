@@ -1,9 +1,9 @@
-Feature: Login a User account
+Feature: Login a Hotel account
 
   Scenario: Create a valid non existing account
     Given I am on / page
     Then I fill the Email with login@example.com
-    * I fill the Username with login
+    * I fill the Hotelname with login
     * I fill the Password with login@example
     * I fill the Confirm Password with login@example
     * I check the I agree to the terms and conditions

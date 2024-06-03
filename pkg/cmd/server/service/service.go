@@ -4,12 +4,13 @@ import (
 	"context"
 
 	"github.com/bastean/bookingo/pkg/cmd/server/service/broker/rabbitmq"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/crypto"
 	"github.com/bastean/bookingo/pkg/cmd/server/service/database/mongodb"
 	"github.com/bastean/bookingo/pkg/cmd/server/service/env"
+	"github.com/bastean/bookingo/pkg/cmd/server/service/hotel"
 	"github.com/bastean/bookingo/pkg/cmd/server/service/logger"
 	"github.com/bastean/bookingo/pkg/cmd/server/service/notify"
 	"github.com/bastean/bookingo/pkg/cmd/server/service/smtp"
-	"github.com/bastean/bookingo/pkg/cmd/server/service/user"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/infrastructure/persistences"
@@ -29,7 +30,7 @@ func Start() error {
 	SMTP = smtp.New(
 		env.SMTP.Host,
 		env.SMTP.Port,
-		env.SMTP.Username,
+		env.SMTP.Hotelname,
 		env.SMTP.Password,
 		env.SMTP.ServerURL,
 	)
@@ -72,22 +73,22 @@ func Start() error {
 		return errors.BubbleUp(err, "Start")
 	}
 
-	logger.Info("starting user")
+	logger.Info("starting hotel")
 
-	userMongoCollection, err := user.NewMongoCollection(
+	hotelMongoCollection, err := hotel.NewMongoCollection(
 		MongoDB,
-		"users",
-		user.Bcrypt,
+		"hotels",
+		crypto.Bcrypt,
 	)
 
 	if err != nil {
 		return errors.BubbleUp(err, "Start")
 	}
 
-	user.Init(
-		userMongoCollection,
+	hotel.Init(
+		hotelMongoCollection,
 		RabbitMQ,
-		user.Bcrypt,
+		crypto.Bcrypt,
 	)
 
 	return nil

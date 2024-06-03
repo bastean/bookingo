@@ -17,7 +17,7 @@ script RegisterFormInit(formTagId, loginTabTagId string) {
                         }
                     ]
                 },
-                Username: {
+                Hotelname: {
                     rules: [
                         {
                             type: "size[2..20]"
@@ -61,7 +61,7 @@ script RegisterFormInit(formTagId, loginTabTagId string) {
             }
         })
         .api({
-            action: "create user", 
+            action: "create hotel", 
             method: "PUT",
             beforeSend: function(settings) {
                 settings.data.Id = crypto.randomUUID();
@@ -111,10 +111,10 @@ templ RegisterForm() {
 			</div>
 		</div>
 		<div class="required field">
-			<label>Username</label>
+			<label>Hotelname</label>
 			<div class="ui inverted transparent left icon input">
-				<i class="user icon"></i>
-				<input type="text" placeholder="Username" name="Username"/>
+				<i class="hotel icon"></i>
+				<input type="text" placeholder="Hotelname" name="Hotelname"/>
 			</div>
 		</div>
 		<div class="required field">

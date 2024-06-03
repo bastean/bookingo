@@ -8,13 +8,13 @@ import (
 	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
-type Meta map[string]any
+type Meta = map[string]any
 
 type Bubble struct {
 	When  time.Time
 	Where string
 	What  string
-	Why   Meta
+	Why   map[string]any
 	Who   error
 }
 

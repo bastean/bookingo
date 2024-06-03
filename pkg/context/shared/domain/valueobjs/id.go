@@ -18,7 +18,6 @@ func (id *Id) Value() string {
 
 func (id *Id) IsValid() error {
 	validate := validator.New(validator.WithRequiredStructEnabled())
-
 	return validate.Struct(id)
 }
 
