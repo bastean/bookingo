@@ -40,19 +40,19 @@ func (suite *HotelDeleteTestSuite) TestDelete() {
 	hotel := aggregate.RandomHotel()
 
 	command := &delete.Command{
-		Id:       hotel.Id.Value(),
+		ID:       hotel.ID.Value(),
 		Password: hotel.Password.Value(),
 	}
 
 	filter := model.RepositorySearchCriteria{
-		Id: hotel.Id,
+		ID: hotel.ID,
 	}
 
 	suite.repository.On("Search", filter).Return(hotel)
 
 	suite.hashing.On("IsNotEqual", hotel.Password.Value(), hotel.Password.Value()).Return(false)
 
-	suite.repository.On("Delete", hotel.Id)
+	suite.repository.On("Delete", hotel.ID)
 
 	suite.NoError(suite.sut.Handle(command))
 

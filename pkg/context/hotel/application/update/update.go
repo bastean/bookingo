@@ -15,14 +15,14 @@ type Update struct {
 }
 
 func (update *Update) Run(hotelUpdate *Command) (*types.Empty, error) {
-	idVO, err := valueobj.NewId(hotelUpdate.Id)
+	idVO, err := valueobj.NewId(hotelUpdate.ID)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
 	hotelRegistered, err := update.Repository.Search(model.RepositorySearchCriteria{
-		Id: idVO,
+		ID: idVO,
 	})
 
 	if err != nil {
@@ -35,14 +35,18 @@ func (update *Update) Run(hotelUpdate *Command) (*types.Empty, error) {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
-	var errEmail, errHotelname, errPassword error
+	var errName, errEmail, errPhone, errPassword error
+
+	if hotelUpdate.Name != "" {
+		hotelRegistered.Name, errName = valueobj.NewName(hotelUpdate.Name)
+	}
 
 	if hotelUpdate.Email != "" {
 		hotelRegistered.Email, errEmail = valueobj.NewEmail(hotelUpdate.Email)
 	}
 
-	if hotelUpdate.Hotelname != "" {
-		hotelRegistered.Hotelname, errHotelname = valueobj.NewHotelname(hotelUpdate.Hotelname)
+	if hotelUpdate.Phone != "" {
+		hotelRegistered.Phone, errPhone = valueobj.NewPhone(hotelUpdate.Phone)
 	}
 
 	if hotelUpdate.UpdatedPassword != "" {
@@ -51,7 +55,7 @@ func (update *Update) Run(hotelUpdate *Command) (*types.Empty, error) {
 		hotelRegistered.Password = nil
 	}
 
-	err = errors.Join(errEmail, errHotelname, errPassword)
+	err = errors.Join(errName, errEmail, errPhone, errPassword)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")

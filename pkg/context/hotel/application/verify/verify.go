@@ -14,7 +14,7 @@ type Verify struct {
 
 func (verify *Verify) Run(id models.ValueObject[string]) (*types.Empty, error) {
 	hotelRegistered, err := verify.Repository.Search(model.RepositorySearchCriteria{
-		Id: id,
+		ID: id,
 	})
 
 	if err != nil {

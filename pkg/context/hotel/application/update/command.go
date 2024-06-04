@@ -1,9 +1,10 @@
 package update
 
 type Command struct {
-	Id              string
+	ID              string
+	Name            string
 	Email           string
-	Hotelname       string
+	Phone           string
 	Password        string
 	UpdatedPassword string
 }

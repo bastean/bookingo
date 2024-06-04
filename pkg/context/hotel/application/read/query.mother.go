@@ -8,6 +8,6 @@ func RandomQuery() *Query {
 	id, _ := valueobj.RandomId()
 
 	return &Query{
-		Id: id.Value(),
+		ID: id.Value(),
 	}
 }

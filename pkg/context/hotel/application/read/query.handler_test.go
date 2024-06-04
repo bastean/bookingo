@@ -34,11 +34,11 @@ func (suite *HotelReadTestSuite) TestLogin() {
 	hotel := aggregate.RandomHotel()
 
 	query := &read.Query{
-		Id: hotel.Id.Value(),
+		ID: hotel.ID.Value(),
 	}
 
 	filter := model.RepositorySearchCriteria{
-		Id: hotel.Id,
+		ID: hotel.ID,
 	}
 
 	suite.repository.On("Search", filter).Return(hotel)

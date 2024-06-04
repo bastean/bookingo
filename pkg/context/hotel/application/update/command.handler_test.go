@@ -40,12 +40,12 @@ func (suite *HotelUpdateTestSuite) SetupTest() {
 func (suite *HotelUpdateTestSuite) TestUpdate() {
 	command := update.RandomCommand()
 
-	hotel, _ := aggregate.NewHotel(command.Id, command.Email, command.Hotelname, command.Password)
+	hotel, _ := aggregate.NewHotel(command.ID, command.Name, command.Email, command.Phone, command.Password)
 
-	idVO, _ := valueobj.NewId(command.Id)
+	idVO, _ := valueobj.NewId(command.ID)
 
 	filter := model.RepositorySearchCriteria{
-		Id: idVO,
+		ID: idVO,
 	}
 
 	suite.repository.On("Search", filter).Return(hotel)

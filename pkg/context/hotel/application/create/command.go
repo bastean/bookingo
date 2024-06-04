@@ -1,8 +1,9 @@
 package create
 
 type Command struct {
-	Id        string
-	Email     string
-	Hotelname string
-	Password  string
+	ID       string
+	Name     string
+	Email    string
+	Phone    string
+	Password string
 }

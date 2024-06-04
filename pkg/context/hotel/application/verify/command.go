@@ -1,5 +1,5 @@
 package verify
 
 type Command struct {
-	Id string
+	ID string
 }

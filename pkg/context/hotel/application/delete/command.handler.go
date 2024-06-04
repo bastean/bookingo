@@ -8,7 +8,7 @@ import (
 )
 
 type Input struct {
-	Id       models.ValueObject[string]
+	ID       models.ValueObject[string]
 	Password models.ValueObject[string]
 }
 
@@ -17,7 +17,7 @@ type CommandHandler struct {
 }
 
 func (handler *CommandHandler) Handle(command *Command) error {
-	id, errId := valueobj.NewId(command.Id)
+	id, errId := valueobj.NewId(command.ID)
 	password, errPassword := valueobj.NewPassword(command.Password)
 
 	err := errors.Join(errId, errPassword)
@@ -27,7 +27,7 @@ func (handler *CommandHandler) Handle(command *Command) error {
 	}
 
 	_, err = handler.UseCase.Run(&Input{
-		Id:       id,
+		ID:       id,
 		Password: password,
 	})
 

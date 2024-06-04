@@ -6,14 +6,16 @@ import (
 
 func RandomCommand() *Command {
 	id, _ := valueobj.RandomId()
+	name, _ := valueobj.RandomName()
 	email, _ := valueobj.RandomEmail()
-	hotelname, _ := valueobj.RandomHotelname()
+	phone, _ := valueobj.RandomPhone()
 	password, _ := valueobj.RandomPassword()
 
 	return &Command{
-		Id:        id.Value(),
-		Email:     email.Value(),
-		Hotelname: hotelname.Value(),
-		Password:  password.Value(),
+		ID:       id.Value(),
+		Name:     name.Value(),
+		Email:    email.Value(),
+		Phone:    phone.Value(),
+		Password: password.Value(),
 	}
 }

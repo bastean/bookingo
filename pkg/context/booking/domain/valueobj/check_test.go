@@ -14,7 +14,7 @@ type CheckValueObjectTestSuite struct {
 
 func (suite *CheckValueObjectTestSuite) SetupTest() {}
 
-func (suite *CheckValueObjectTestSuite) TestPhone() {
+func (suite *CheckValueObjectTestSuite) TestCheck() {
 	check, err := valueobj.InvalidCheck()
 
 	var actual *errors.InvalidValue

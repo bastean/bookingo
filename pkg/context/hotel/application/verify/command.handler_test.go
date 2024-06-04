@@ -37,14 +37,14 @@ func (suite *HotelVerifyTestSuite) TestVerify() {
 
 	hotel := aggregate.RandomHotel()
 
-	idVO, _ := valueobj.NewId(command.Id)
+	idVO, _ := valueobj.NewId(command.ID)
 
-	hotel.Id = idVO
+	hotel.ID = idVO
 
 	hotel.Password = nil
 
 	filter := model.RepositorySearchCriteria{
-		Id: idVO,
+		ID: idVO,
 	}
 
 	suite.repository.On("Search", filter).Return(hotel)
