@@ -17,7 +17,7 @@ import (
 type HotelUpdateTestSuite struct {
 	suite.Suite
 	sut        models.CommandHandler[*update.Command]
-	useCase    models.UseCase[*update.Command, *types.Empty]
+	useCase    models.UseCase[*update.Input, *types.Empty]
 	hashing    *cryptographics.HashingMock
 	repository *persistence.RepositoryMock
 }

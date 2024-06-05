@@ -13,12 +13,13 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type hotelDocument struct {
-	Id        string `bson:"id"`
-	Email     string `bson:"email"`
-	Hotelname string `bson:"hotelname"`
-	Password  string `bson:"password"`
-	Verified  bool   `bson:"verified"`
+type HotelDocument struct {
+	ID       string `bson:"id,omitempty"`
+	Name     string `bson:"name,omitempty"`
+	Email    string `bson:"email,omitempty"`
+	Phone    string `bson:"phone,omitempty"`
+	Password string `bson:"password,omitempty"`
+	Verified bool   `bson:"verified,omitempty"`
 }
 
 type HotelCollection struct {
@@ -27,7 +28,7 @@ type HotelCollection struct {
 }
 
 func (db *HotelCollection) Save(hotel *aggregate.Hotel) error {
-	newHotel := hotelDocument(*hotel.ToPrimitives())
+	newHotel := HotelDocument(*hotel.ToPrimitives())
 
 	hashed, err := db.hashing.Hash(newHotel.Password)
 
@@ -48,7 +49,7 @@ func (db *HotelCollection) Save(hotel *aggregate.Hotel) error {
 			Where: "Save",
 			What:  "failure to save a hotel",
 			Why: errors.Meta{
-				"Id": hotel.Id.Value(),
+				"ID": hotel.ID.Value(),
 			},
 			Who: err,
 		})
@@ -58,40 +59,47 @@ func (db *HotelCollection) Save(hotel *aggregate.Hotel) error {
 }
 
 func (db *HotelCollection) Update(hotel *aggregate.Hotel) error {
-	updateFilter := bson.M{"id": hotel.Id.Value()}
+	updatedHotel := HotelDocument(*hotel.ToPrimitives())
 
-	updateHotel := bson.M{}
+	filter := bson.D{{Key: "id", Value: hotel.ID.Value()}}
 
-	if hotel.Email != nil {
-		updateHotel["email"] = hotel.Email.Value()
+	hashed, err := db.hashing.Hash(hotel.Password.Value())
+
+	if err != nil {
+		return errors.BubbleUp(err, "Update")
 	}
 
-	if hotel.Hotelname != nil {
-		updateHotel["hotelname"] = hotel.Hotelname.Value()
-	}
+	updatedHotel.Password = hashed
 
-	if hotel.Password != nil {
-		hashed, err := db.hashing.Hash(hotel.Password.Value())
-
-		if err != nil {
-			return errors.BubbleUp(err, "Update")
-		}
-
-		updateHotel["password"] = hashed
-	}
-
-	if hotel.Verified != nil {
-		updateHotel["verified"] = hotel.Verified.Value()
-	}
-
-	_, err := db.collection.UpdateOne(context.Background(), updateFilter, bson.M{"$set": updateHotel})
+	_, err = db.collection.ReplaceOne(context.Background(), filter, updatedHotel)
 
 	if err != nil {
 		return errors.NewInternal(&errors.Bubble{
 			Where: "Update",
 			What:  "failure to update a hotel",
 			Why: errors.Meta{
-				"Id": hotel.Id.Value(),
+				"ID": hotel.ID.Value(),
+			},
+			Who: err,
+		})
+	}
+
+	return nil
+}
+
+func (db *HotelCollection) Verify(id models.ValueObject[string]) error {
+	filter := bson.D{{Key: "id", Value: id.Value()}}
+
+	_, err := db.collection.UpdateOne(context.Background(), filter, bson.D{{Key: "$set", Value: bson.D{
+		{Key: "verified", Value: true},
+	}}})
+
+	if err != nil {
+		return errors.NewInternal(&errors.Bubble{
+			Where: "Verify",
+			What:  "failure to verify a hotel",
+			Why: errors.Meta{
+				"ID": id.Value(),
 			},
 			Who: err,
 		})
@@ -101,16 +109,16 @@ func (db *HotelCollection) Update(hotel *aggregate.Hotel) error {
 }
 
 func (db *HotelCollection) Delete(id models.ValueObject[string]) error {
-	deleteFilter := bson.M{"id": id.Value()}
+	filter := bson.D{{Key: "id", Value: id.Value()}}
 
-	_, err := db.collection.DeleteOne(context.Background(), deleteFilter)
+	_, err := db.collection.DeleteOne(context.Background(), filter)
 
 	if err != nil {
 		return errors.NewInternal(&errors.Bubble{
 			Where: "Delete",
 			What:  "failure to delete a hotel",
 			Why: errors.Meta{
-				"Id": id.Value(),
+				"ID": id.Value(),
 			},
 			Who: err,
 		})
@@ -120,17 +128,22 @@ func (db *HotelCollection) Delete(id models.ValueObject[string]) error {
 }
 
 func (db *HotelCollection) Search(filter model.RepositorySearchCriteria) (*aggregate.Hotel, error) {
-	var searchFilter bson.M
+	var searchFilter bson.D
 	var index string
 
+	if filter.Phone != nil {
+		searchFilter = bson.D{{Key: "phone", Value: filter.Phone.Value()}}
+		index = filter.Phone.Value()
+	}
+
 	if filter.Email != nil {
-		searchFilter = bson.M{"email": filter.Email.Value()}
+		searchFilter = bson.D{{Key: "email", Value: filter.Email.Value()}}
 		index = filter.Email.Value()
 	}
 
-	if filter.Id != nil {
-		searchFilter = bson.M{"id": filter.Id.Value()}
-		index = filter.Id.Value()
+	if filter.ID != nil {
+		searchFilter = bson.D{{Key: "id", Value: filter.ID.Value()}}
+		index = filter.ID.Value()
 	}
 
 	result := db.collection.FindOne(context.Background(), searchFilter)
@@ -150,7 +163,7 @@ func (db *HotelCollection) Search(filter model.RepositorySearchCriteria) (*aggre
 			Where: "Search",
 			What:  "failure to search for a hotel",
 			Why: errors.Meta{
-				"Id":    filter.Id.Value(),
+				"ID":    filter.ID.Value(),
 				"Email": filter.Email.Value(),
 			},
 			Who: err,
@@ -173,7 +186,7 @@ func NewMongoCollection(mdb *persistences.MongoDB, collectionName string, hashin
 			Options: options.Index().SetUnique(true),
 		},
 		{
-			Keys:    bson.D{{Key: "hotelname", Value: 1}},
+			Keys:    bson.D{{Key: "phone", Value: 1}},
 			Options: options.Index().SetUnique(true),
 		},
 	})

@@ -21,6 +21,11 @@ func (repository *RepositoryMock) Update(hotel *aggregate.Hotel) error {
 	return nil
 }
 
+func (repository *RepositoryMock) Verify(id models.ValueObject[string]) error {
+	repository.Called(id)
+	return nil
+}
+
 func (repository *RepositoryMock) Delete(id models.ValueObject[string]) error {
 	repository.Called(id)
 	return nil

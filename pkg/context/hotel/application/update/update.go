@@ -2,7 +2,6 @@ package update
 
 import (
 	"github.com/bastean/bookingo/pkg/context/hotel/domain/model"
-	"github.com/bastean/bookingo/pkg/context/hotel/domain/valueobj"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
@@ -14,54 +13,28 @@ type Update struct {
 	models.Hashing
 }
 
-func (update *Update) Run(hotelUpdate *Command) (*types.Empty, error) {
-	idVO, err := valueobj.NewId(hotelUpdate.ID)
-
-	if err != nil {
-		return nil, errors.BubbleUp(err, "Run")
-	}
-
+func (update *Update) Run(input *Input) (*types.Empty, error) {
 	hotelRegistered, err := update.Repository.Search(model.RepositorySearchCriteria{
-		ID: idVO,
+		ID: input.Hotel.ID,
 	})
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
-	err = services.IsPasswordInvalid(update.Hashing, hotelRegistered.Password.Value(), hotelUpdate.Password)
+	err = services.IsPasswordInvalid(update.Hashing, hotelRegistered.Password.Value(), input.Hotel.Password.Value())
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
-	var errName, errEmail, errPhone, errPassword error
-
-	if hotelUpdate.Name != "" {
-		hotelRegistered.Name, errName = valueobj.NewName(hotelUpdate.Name)
+	if input.UpdatedPassword != nil {
+		input.Hotel.Password = input.UpdatedPassword
 	}
 
-	if hotelUpdate.Email != "" {
-		hotelRegistered.Email, errEmail = valueobj.NewEmail(hotelUpdate.Email)
-	}
+	input.Hotel.Verified = hotelRegistered.Verified
 
-	if hotelUpdate.Phone != "" {
-		hotelRegistered.Phone, errPhone = valueobj.NewPhone(hotelUpdate.Phone)
-	}
-
-	if hotelUpdate.UpdatedPassword != "" {
-		hotelRegistered.Password, errPassword = valueobj.NewPassword(hotelUpdate.UpdatedPassword)
-	} else {
-		hotelRegistered.Password = nil
-	}
-
-	err = errors.Join(errName, errEmail, errPhone, errPassword)
-
-	if err != nil {
-		return nil, errors.BubbleUp(err, "Run")
-	}
-
-	err = update.Repository.Update(hotelRegistered)
+	err = update.Repository.Update(input.Hotel)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")

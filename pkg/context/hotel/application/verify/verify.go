@@ -2,7 +2,6 @@ package verify
 
 import (
 	"github.com/bastean/bookingo/pkg/context/hotel/domain/model"
-	"github.com/bastean/bookingo/pkg/context/hotel/domain/valueobj"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/types"
@@ -25,15 +24,7 @@ func (verify *Verify) Run(id models.ValueObject[string]) (*types.Empty, error) {
 		return nil, nil
 	}
 
-	hotelRegistered.Verified, err = valueobj.NewVerified(true)
-
-	if err != nil {
-		return nil, errors.BubbleUp(err, "Run")
-	}
-
-	hotelRegistered.Password = nil
-
-	err = verify.Repository.Update(hotelRegistered)
+	err = verify.Repository.Verify(id)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")

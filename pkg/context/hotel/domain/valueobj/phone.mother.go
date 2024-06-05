@@ -6,7 +6,7 @@ import (
 )
 
 func RandomPhone() (models.ValueObject[string], error) {
-	return NewPhone(services.Create.Phone())
+	return NewPhone("+" + services.Create.Phone())
 }
 
 func InvalidPhone() (string, error) {

@@ -71,6 +71,16 @@ func (suite *HotelMongoRepositoryTestSuite) TestUpdate() {
 	suite.hashing.AssertExpectations(suite.T())
 }
 
+func (suite *HotelMongoRepositoryTestSuite) TestVerify() {
+	hotel := aggregate.RandomHotel()
+
+	suite.hashing.On("Hash", hotel.Password.Value()).Return(hotel.Password.Value())
+
+	suite.NoError(suite.sut.Save(hotel))
+
+	suite.NoError(suite.sut.Verify(hotel.ID))
+}
+
 func (suite *HotelMongoRepositoryTestSuite) TestDelete() {
 	hotel := aggregate.RandomHotel()
 
@@ -78,7 +88,7 @@ func (suite *HotelMongoRepositoryTestSuite) TestDelete() {
 
 	suite.NoError(suite.sut.Save(hotel))
 
-	suite.NoError(suite.sut.Delete(hotel.Id))
+	suite.NoError(suite.sut.Delete(hotel.ID))
 }
 
 func (suite *HotelMongoRepositoryTestSuite) TestSearch() {
