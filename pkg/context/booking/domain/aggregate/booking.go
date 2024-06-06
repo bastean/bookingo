@@ -112,19 +112,19 @@ func FromPrimitives(primitive *BookingPrimitive) (*Booking, error) {
 	return booking, nil
 }
 
-func NewBooking(hotelID, id, firstName, lastName, email, phone, checkIn, checkOut, room, currency string, total float32) (*Booking, error) {
+func NewBooking(primitive *BookingPrimitive) (*Booking, error) {
 	booking, err := create(
-		hotelID,
-		id,
-		firstName,
-		lastName,
-		email,
-		phone,
-		checkIn,
-		checkOut,
-		room,
-		currency,
-		total,
+		primitive.HotelID,
+		primitive.ID,
+		primitive.FirstName,
+		primitive.LastName,
+		primitive.Email,
+		primitive.Phone,
+		primitive.CheckIn,
+		primitive.CheckOut,
+		primitive.Room,
+		primitive.Currency,
+		primitive.Total,
 	)
 
 	if err != nil {
@@ -132,17 +132,17 @@ func NewBooking(hotelID, id, firstName, lastName, email, phone, checkIn, checkOu
 	}
 
 	eventMessage, err := message.NewCreatedSucceededEvent(&message.CreatedSucceededEventAttributes{
-		HotelID:   hotelID,
-		ID:        id,
-		FirstName: firstName,
-		LastName:  lastName,
-		Email:     email,
-		Phone:     phone,
-		CheckIn:   checkIn,
-		CheckOut:  checkOut,
-		Room:      room,
-		Currency:  currency,
-		Total:     total,
+		HotelID:   primitive.HotelID,
+		ID:        primitive.ID,
+		FirstName: primitive.FirstName,
+		LastName:  primitive.LastName,
+		Email:     primitive.Email,
+		Phone:     primitive.Phone,
+		CheckIn:   primitive.CheckIn,
+		CheckOut:  primitive.CheckOut,
+		Room:      primitive.Room,
+		Currency:  primitive.Currency,
+		Total:     primitive.Total,
 	})
 
 	if err != nil {

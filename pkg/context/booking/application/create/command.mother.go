@@ -1,10 +1,10 @@
-package aggregate
+package create
 
 import (
 	"github.com/bastean/bookingo/pkg/context/booking/domain/valueobj"
 )
 
-func RandomBooking() *Booking {
+func RandomCommand() *Command {
 	hotelID, _ := valueobj.RandomId()
 	id, _ := valueobj.RandomId()
 	firstName, _ := valueobj.RandomName()
@@ -17,7 +17,7 @@ func RandomBooking() *Booking {
 	currency, _ := valueobj.RandomCurrency()
 	total, _ := valueobj.RandomTotal()
 
-	booking, _ := NewBooking(&BookingPrimitive{
+	return &Command{
 		HotelID:   hotelID.Value(),
 		ID:        id.Value(),
 		FirstName: firstName.Value(),
@@ -29,7 +29,5 @@ func RandomBooking() *Booking {
 		Room:      room.Value(),
 		Currency:  currency.Value(),
 		Total:     total.Value(),
-	})
-
-	return booking
+	}
 }

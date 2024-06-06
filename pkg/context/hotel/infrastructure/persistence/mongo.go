@@ -127,26 +127,26 @@ func (db *HotelCollection) Delete(id models.ValueObject[string]) error {
 	return nil
 }
 
-func (db *HotelCollection) Search(filter model.RepositorySearchCriteria) (*aggregate.Hotel, error) {
-	var searchFilter bson.D
+func (db *HotelCollection) Search(criteria model.RepositorySearchCriteria) (*aggregate.Hotel, error) {
+	var filter bson.D
 	var index string
 
-	if filter.Phone != nil {
-		searchFilter = bson.D{{Key: "phone", Value: filter.Phone.Value()}}
-		index = filter.Phone.Value()
+	if criteria.Phone != nil {
+		filter = bson.D{{Key: "phone", Value: criteria.Phone.Value()}}
+		index = criteria.Phone.Value()
 	}
 
-	if filter.Email != nil {
-		searchFilter = bson.D{{Key: "email", Value: filter.Email.Value()}}
-		index = filter.Email.Value()
+	if criteria.Email != nil {
+		filter = bson.D{{Key: "email", Value: criteria.Email.Value()}}
+		index = criteria.Email.Value()
 	}
 
-	if filter.ID != nil {
-		searchFilter = bson.D{{Key: "id", Value: filter.ID.Value()}}
-		index = filter.ID.Value()
+	if criteria.ID != nil {
+		filter = bson.D{{Key: "id", Value: criteria.ID.Value()}}
+		index = criteria.ID.Value()
 	}
 
-	result := db.collection.FindOne(context.Background(), searchFilter)
+	result := db.collection.FindOne(context.Background(), filter)
 
 	if err := result.Err(); err != nil {
 		return nil, persistences.HandleMongoDocumentNotFound(index, err)
@@ -163,8 +163,7 @@ func (db *HotelCollection) Search(filter model.RepositorySearchCriteria) (*aggre
 			Where: "Search",
 			What:  "failure to search for a hotel",
 			Why: errors.Meta{
-				"ID":    filter.ID.Value(),
-				"Email": filter.Email.Value(),
+				"Index": index,
 			},
 			Who: err,
 		})
