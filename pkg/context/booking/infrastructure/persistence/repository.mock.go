@@ -21,12 +21,12 @@ func (repository *RepositoryMock) Update(booking *aggregate.Booking) error {
 	return nil
 }
 
-func (repository *RepositoryMock) Delete(id []models.ValueObject[string]) error {
+func (repository *RepositoryMock) Delete(id models.ValueObject[string]) error {
 	repository.Called(id)
 	return nil
 }
 
-func (repository *RepositoryMock) Search(filter model.RepositorySearchCriteria) ([]*aggregate.Booking, error) {
-	args := repository.Called(filter)
-	return args.Get(0).([]*aggregate.Booking), nil
+func (repository *RepositoryMock) Search(criteria *model.RepositorySearchCriteria) (*aggregate.Booking, error) {
+	args := repository.Called(criteria)
+	return args.Get(0).(*aggregate.Booking), nil
 }

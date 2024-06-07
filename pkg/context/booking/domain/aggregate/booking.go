@@ -131,19 +131,9 @@ func NewBooking(primitive *BookingPrimitive) (*Booking, error) {
 		return nil, errors.BubbleUp(err, "NewBooking")
 	}
 
-	eventMessage, err := message.NewCreatedSucceededEvent(&message.CreatedSucceededEventAttributes{
-		HotelID:   primitive.HotelID,
-		ID:        primitive.ID,
-		FirstName: primitive.FirstName,
-		LastName:  primitive.LastName,
-		Email:     primitive.Email,
-		Phone:     primitive.Phone,
-		CheckIn:   primitive.CheckIn,
-		CheckOut:  primitive.CheckOut,
-		Room:      primitive.Room,
-		Currency:  primitive.Currency,
-		Total:     primitive.Total,
-	})
+	attributes := message.CreatedSucceededEventAttributes(*primitive)
+
+	eventMessage, err := message.NewCreatedSucceededEvent(&attributes)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "NewBooking")

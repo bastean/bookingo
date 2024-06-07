@@ -15,6 +15,6 @@ type RepositorySearchCriteria struct {
 type Repository interface {
 	Save(booking *aggregate.Booking) error
 	Update(booking *aggregate.Booking) error
-	Delete(id []models.ValueObject[string]) error
-	Search(filter RepositorySearchCriteria) ([]*aggregate.Booking, error)
+	Delete(id models.ValueObject[string]) error
+	Search(criteria *RepositorySearchCriteria) (*aggregate.Booking, error)
 }
