@@ -11,7 +11,7 @@ type Update struct {
 	model.Repository
 }
 
-func (update *Update) Run(booking *aggregate.Booking) (*types.Empty, error) {
+func (update *Update) Run(booking *aggregate.Booking) (types.Empty, error) {
 	bookingRegistered, err := update.Repository.Search(&model.RepositorySearchCriteria{
 		ID: booking.ID,
 	})

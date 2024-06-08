@@ -11,7 +11,7 @@ type Create struct {
 	model.Repository
 }
 
-func (create *Create) Run(booking *aggregate.Booking) (*types.Empty, error) {
+func (create *Create) Run(booking *aggregate.Booking) (types.Empty, error) {
 	err := create.Repository.Save(booking)
 
 	if err != nil {

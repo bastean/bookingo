@@ -15,7 +15,7 @@ import (
 type BookingUpdateTestSuite struct {
 	suite.Suite
 	sut        models.CommandHandler[*update.Command]
-	useCase    models.UseCase[*aggregate.Booking, *types.Empty]
+	useCase    models.UseCase[*aggregate.Booking, types.Empty]
 	repository *persistence.RepositoryMock
 }
 

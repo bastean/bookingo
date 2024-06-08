@@ -13,7 +13,7 @@ type Update struct {
 	models.Hashing
 }
 
-func (update *Update) Run(input *Input) (*types.Empty, error) {
+func (update *Update) Run(input *Input) (types.Empty, error) {
 	hotelRegistered, err := update.Repository.Search(model.RepositorySearchCriteria{
 		ID: input.Hotel.ID,
 	})

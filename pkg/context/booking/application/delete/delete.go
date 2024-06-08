@@ -10,7 +10,7 @@ type Delete struct {
 	model.Repository
 }
 
-func (delete *Delete) Run(input *Input) (*types.Empty, error) {
+func (delete *Delete) Run(input *Input) (types.Empty, error) {
 	booking, err := delete.Repository.Search(&model.RepositorySearchCriteria{
 		ID: input.ID,
 	})

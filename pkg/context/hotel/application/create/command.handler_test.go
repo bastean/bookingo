@@ -15,7 +15,7 @@ import (
 type HotelCreateTestSuite struct {
 	suite.Suite
 	sut        models.CommandHandler[*create.Command]
-	useCase    models.UseCase[*aggregate.Hotel, *types.Empty]
+	useCase    models.UseCase[*aggregate.Hotel, types.Empty]
 	repository *persistence.RepositoryMock
 	broker     *communications.BrokerMock
 }

@@ -8,7 +8,7 @@ import (
 )
 
 type CommandHandler struct {
-	models.UseCase[*aggregate.Booking, *types.Empty]
+	models.UseCase[*aggregate.Booking, types.Empty]
 }
 
 func (handler *CommandHandler) Handle(command *Command) error {

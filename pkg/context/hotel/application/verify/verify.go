@@ -11,7 +11,7 @@ type Verify struct {
 	model.Repository
 }
 
-func (verify *Verify) Run(id models.ValueObject[string]) (*types.Empty, error) {
+func (verify *Verify) Run(id models.ValueObject[string]) (types.Empty, error) {
 	hotelRegistered, err := verify.Repository.Search(model.RepositorySearchCriteria{
 		ID: id,
 	})

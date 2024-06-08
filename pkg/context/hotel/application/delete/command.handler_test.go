@@ -16,7 +16,7 @@ import (
 type HotelDeleteTestSuite struct {
 	suite.Suite
 	sut        models.CommandHandler[*delete.Command]
-	useCase    models.UseCase[*delete.Input, *types.Empty]
+	useCase    models.UseCase[*delete.Input, types.Empty]
 	hashing    *cryptographics.HashingMock
 	repository *persistence.RepositoryMock
 }
