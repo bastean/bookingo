@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/bastean/bookingo/pkg/context/notify/application/send"
-	"github.com/bastean/bookingo/pkg/context/notify/infrastructure/communication"
+	"github.com/bastean/bookingo/pkg/context/hotel/application/send"
+	"github.com/bastean/bookingo/pkg/context/hotel/domain/event"
+	"github.com/bastean/bookingo/pkg/context/hotel/infrastructure/communication"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/queues"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/types"
@@ -15,7 +16,7 @@ import (
 type CreatedSucceededEventConsumerTestSuite struct {
 	suite.Suite
 	sut       models.Consumer
-	useCase   models.UseCase[any, types.Empty]
+	useCase   models.UseCase[*event.CreatedSucceeded, types.Empty]
 	transport *communication.TransportMock
 	queues    []*queues.Queue
 }
@@ -44,9 +45,9 @@ func (suite *CreatedSucceededEventConsumerTestSuite) SetupTest() {
 }
 
 func (suite *CreatedSucceededEventConsumerTestSuite) TestEventConsumer() {
-	message := send.RandomEvent()
+	message := event.RandomCreatedSucceeded()
 
-	attributes := new(send.CreatedSucceededEventAttributes)
+	attributes := new(event.CreatedSucceededAttributes)
 
 	json.Unmarshal(message.Attributes, attributes)
 

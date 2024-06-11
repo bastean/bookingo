@@ -3,6 +3,7 @@ package send
 import (
 	"encoding/json"
 
+	"github.com/bastean/bookingo/pkg/context/hotel/domain/event"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/messages"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
@@ -11,7 +12,7 @@ import (
 )
 
 type CreatedSucceededEventConsumer struct {
-	models.UseCase[any, types.Empty]
+	models.UseCase[*event.CreatedSucceeded, types.Empty]
 	Queues []*queues.Queue
 }
 
@@ -20,22 +21,26 @@ func (consumer *CreatedSucceededEventConsumer) SubscribedTo() []*queues.Queue {
 }
 
 func (consumer *CreatedSucceededEventConsumer) On(message *messages.Message) error {
-	attributes := new(CreatedSucceededEventAttributes)
+	hotel := new(event.CreatedSucceeded)
 
-	err := json.Unmarshal(message.Attributes, attributes)
+	hotel.Attributes = new(event.CreatedSucceededAttributes)
+
+	err := json.Unmarshal(message.Attributes, hotel.Attributes)
 
 	if err != nil {
 		return errors.NewInternal(&errors.Bubble{
 			Where: "On",
 			What:  "failure to obtain message attributes",
 			Why: errors.Meta{
-				"Message": message.Id,
+				"Id":          message.Id,
+				"Routing Key": message.Type,
+				"Occurred On": message.OccurredOn,
 			},
 			Who: err,
 		})
 	}
 
-	_, err = consumer.UseCase.Run(attributes)
+	_, err = consumer.UseCase.Run(hotel)
 
 	if err != nil {
 		return errors.BubbleUp(err, "On")
