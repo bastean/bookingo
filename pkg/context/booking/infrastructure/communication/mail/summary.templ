@@ -1,27 +1,32 @@
 package mail
 
-templ AccountConfirmationTemplate(name, confirmationLink string) {
+import (
+	"fmt"
+
+	"github.com/bastean/bookingo/pkg/context/booking/domain/event"
+)
+
+templ SummaryTemplate(booking *event.CreatedSucceededAttributes) {
 	<div style="padding: 64px 16px; background-color: #000000">
 		<div style="top: 8px; position: relative">
 			<div align="center">
 				<img
 					style="max-width: 100%"
-					src="https://raw.githubusercontent.com/bastean/bookingo/main/assets/readme/logo-readme.png"
+					src="https://raw.githubusercontent.com/bastean/bookingo/main/assets/readme/logo.png"
 				/>
 			</div>
 			<div style="margin-top: 20px; overflow-wrap: break-word" align="center">
-				<p style="color: #a4a5a7; font-size: 24px">Hi { name }</p>
+				<p style="color: #a4a5a7; font-size: 24px">Hi { booking.FirstName } { booking.LastName }</p>
 				<p style="color: #bebfc0; font-size: 18px">
-					Please confirm your account by clicking the button below
+					Here is the summary of your booking:
 				</p>
-				<a
-					style="color: #d8d9d9; font-size: 20px"
-					href={ templ.URL(confirmationLink) }
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					CONFIRM
-				</a>
+				<div style="color: #bebfc0">
+					<p>Check-in: { booking.CheckIn }</p>
+					<p>Check-out: { booking.CheckOut }</p>
+					<p>Room: { booking.Room }</p>
+					<br/>
+					<b>Total({ booking.Currency }): { fmt.Sprintf("%v", booking.Total) }</b>
+				</div>
 				<div style="margin-top: 16px" align="center">
 					<a
 						style="color: #000000"

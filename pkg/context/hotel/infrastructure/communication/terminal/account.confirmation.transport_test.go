@@ -34,15 +34,15 @@ func (suite *HotelTerminalAccountConfirmationTransportTestSuite) SetupTest() {
 func (suite *HotelTerminalAccountConfirmationTransportTestSuite) TestSubmit() {
 	message := event.RandomCreatedSucceeded()
 
-	attributes := new(event.CreatedSucceededAttributes)
+	hotel := new(event.CreatedSucceededAttributes)
 
-	json.Unmarshal(message.Attributes, attributes)
+	json.Unmarshal(message.Attributes, hotel)
 
-	confirmationLink := fmt.Sprintf("Hi %s, please confirm your account through this link: %s/verify/%s", attributes.Name, suite.serverURL, attributes.ID)
+	confirmationLink := fmt.Sprintf("Hi %v, please confirm your account through this link: %v/verify/%v", hotel.Name, suite.serverURL, hotel.ID)
 
 	suite.logger.Mock.On("Info", confirmationLink)
 
-	suite.NoError(suite.sut.Submit(attributes))
+	suite.NoError(suite.sut.Submit(hotel))
 
 	suite.logger.AssertExpectations(suite.T())
 }

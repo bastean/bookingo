@@ -1,7 +1,7 @@
 package aggregate
 
 import (
-	"github.com/bastean/bookingo/pkg/context/booking/domain/message"
+	"github.com/bastean/bookingo/pkg/context/booking/domain/event"
 	"github.com/bastean/bookingo/pkg/context/booking/domain/valueobj"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/aggregates"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
@@ -131,15 +131,17 @@ func NewBooking(primitive *BookingPrimitive) (*Booking, error) {
 		return nil, errors.BubbleUp(err, "NewBooking")
 	}
 
-	attributes := message.CreatedSucceededEventAttributes(*primitive)
+	attributes := event.CreatedSucceededAttributes(*primitive)
 
-	eventMessage, err := message.NewCreatedSucceededEvent(&attributes)
+	message, err := event.NewCreatedSucceeded(&event.CreatedSucceeded{
+		Attributes: &attributes,
+	})
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "NewBooking")
 	}
 
-	booking.RecordMessage(eventMessage)
+	booking.RecordMessage(message)
 
 	return booking, nil
 }

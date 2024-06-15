@@ -1,4 +1,4 @@
-package message
+package event
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"github.com/bastean/bookingo/pkg/context/shared/domain/messages"
 )
 
-var CreatedSucceededEventTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRoutingKey{
+var CreatedSucceededTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRoutingKey{
 	Module:    "booking",
 	Version:   "1",
 	Type:      messages.Type.Event,
@@ -16,7 +16,7 @@ var CreatedSucceededEventTypeRoutingKey = messages.NewRoutingKey(&messages.Messa
 	Status:    messages.Status.Succeeded,
 })
 
-type CreatedSucceededEventAttributes struct {
+type CreatedSucceededAttributes struct {
 	HotelID   string
 	ID        string
 	FirstName string
@@ -30,19 +30,23 @@ type CreatedSucceededEventAttributes struct {
 	Total     float32
 }
 
-func NewCreatedSucceededEvent(attributes *CreatedSucceededEventAttributes) (*messages.Message, error) {
-	attributesJson, err := json.Marshal(attributes)
+type CreatedSucceeded struct {
+	Attributes *CreatedSucceededAttributes
+}
+
+func NewCreatedSucceeded(event *CreatedSucceeded) (*messages.Message, error) {
+	attributes, err := json.Marshal(event.Attributes)
 
 	if err != nil {
 		return nil, errors.NewInternal(&errors.Bubble{
-			Where: "NewCreatedSucceededEvent",
-			What:  "failure to create an event message",
+			Where: "NewCreatedSucceeded",
+			What:  "failure to create event message attributes",
 			Why: errors.Meta{
-				"Routing Key": CreatedSucceededEventTypeRoutingKey,
+				"Routing Key": CreatedSucceededTypeRoutingKey,
 			},
 			Who: err,
 		})
 	}
 
-	return messages.NewMessage(CreatedSucceededEventTypeRoutingKey, attributesJson, messages.Meta{}), nil
+	return messages.NewMessage(CreatedSucceededTypeRoutingKey, attributes, messages.Meta{}), nil
 }
