@@ -12,18 +12,18 @@ type Delete struct {
 
 func (delete *Delete) Run(input *Input) (types.Empty, error) {
 	booking, err := delete.Repository.Search(&model.RepositorySearchCriteria{
-		ID: input.ID,
+		Id: input.Id,
 	})
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
-	if input.HotelID.Value() != booking.HotelID.Value() {
+	if input.HotelId.Value() != booking.HotelId.Value() {
 		return nil, nil
 	}
 
-	err = delete.Repository.Delete(booking.ID)
+	err = delete.Repository.Delete(booking.Id)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")

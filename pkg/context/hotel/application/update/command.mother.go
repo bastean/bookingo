@@ -13,7 +13,7 @@ func RandomCommand() *Command {
 	updatedPassword, _ := valueobj.RandomPassword()
 
 	return &Command{
-		ID:              id.Value(),
+		Id:              id.Value(),
 		Name:            name.Value(),
 		Email:           email.Value(),
 		Phone:           phone.Value(),

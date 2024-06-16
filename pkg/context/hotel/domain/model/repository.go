@@ -6,7 +6,7 @@ import (
 )
 
 type RepositorySearchCriteria struct {
-	ID    models.ValueObject[string]
+	Id    models.ValueObject[string]
 	Email models.ValueObject[string]
 	Phone models.ValueObject[string]
 }

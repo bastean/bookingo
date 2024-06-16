@@ -17,7 +17,7 @@ var CreatedSucceededTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRou
 })
 
 type CreatedSucceededAttributes struct {
-	ID    string
+	Id    string
 	Name  string
 	Email string
 	Phone string

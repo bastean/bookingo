@@ -8,6 +8,6 @@ func RandomCommand() *Command {
 	id, _ := valueobj.RandomId()
 
 	return &Command{
-		ID: id.Value(),
+		Id: id.Value(),
 	}
 }

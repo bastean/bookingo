@@ -1,7 +1,7 @@
 package login
 
 type Response struct {
-	ID       string
+	Id       string
 	Name     string
 	Email    string
 	Phone    string

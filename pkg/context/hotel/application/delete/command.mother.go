@@ -9,7 +9,7 @@ func RandomCommand() *Command {
 	password, _ := valueobj.RandomPassword()
 
 	return &Command{
-		ID:       id.Value(),
+		Id:       id.Value(),
 		Password: password.Value(),
 	}
 }

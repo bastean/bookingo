@@ -17,8 +17,8 @@ var CreatedSucceededTypeRoutingKey = messages.NewRoutingKey(&messages.MessageRou
 })
 
 type CreatedSucceededAttributes struct {
-	HotelID   string
-	ID        string
+	HotelId   string
+	Id        string
 	FirstName string
 	LastName  string
 	Email     string

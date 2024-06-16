@@ -6,7 +6,7 @@ import (
 )
 
 func RandomCreatedSucceeded() *messages.Message {
-	hotelID, _ := valueobj.RandomId()
+	hotelId, _ := valueobj.RandomId()
 	id, _ := valueobj.RandomId()
 	firstName, _ := valueobj.RandomName()
 	lastName, _ := valueobj.RandomName()
@@ -20,8 +20,8 @@ func RandomCreatedSucceeded() *messages.Message {
 
 	event, _ := NewCreatedSucceeded(&CreatedSucceeded{
 		Attributes: &CreatedSucceededAttributes{
-			HotelID:   hotelID.Value(),
-			ID:        id.Value(),
+			HotelId:   hotelId.Value(),
+			Id:        id.Value(),
 			FirstName: firstName.Value(),
 			LastName:  lastName.Value(),
 			Email:     email.Value(),

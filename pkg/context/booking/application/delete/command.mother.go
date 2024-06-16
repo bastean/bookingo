@@ -5,11 +5,11 @@ import (
 )
 
 func RandomCommand() *Command {
-	hotelID, _ := valueobj.RandomId()
+	hotelId, _ := valueobj.RandomId()
 	id, _ := valueobj.RandomId()
 
 	return &Command{
-		HotelID: hotelID.Value(),
-		ID:      id.Value(),
+		HotelId: hotelId.Value(),
+		Id:      id.Value(),
 	}
 }

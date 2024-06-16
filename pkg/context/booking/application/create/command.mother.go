@@ -5,7 +5,7 @@ import (
 )
 
 func RandomCommand() *Command {
-	hotelID, _ := valueobj.RandomId()
+	hotelId, _ := valueobj.RandomId()
 	id, _ := valueobj.RandomId()
 	firstName, _ := valueobj.RandomName()
 	lastName, _ := valueobj.RandomName()
@@ -18,8 +18,8 @@ func RandomCommand() *Command {
 	total, _ := valueobj.RandomTotal()
 
 	return &Command{
-		HotelID:   hotelID.Value(),
-		ID:        id.Value(),
+		HotelId:   hotelId.Value(),
+		Id:        id.Value(),
 		FirstName: firstName.Value(),
 		LastName:  lastName.Value(),
 		Email:     email.Value(),

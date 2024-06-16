@@ -14,8 +14,8 @@ import (
 )
 
 type BookingDocument struct {
-	HotelID   string  `bson:"hotelId,omitempty"`
-	ID        string  `bson:"id,omitempty"`
+	HotelId   string  `bson:"hotelId,omitempty"`
+	Id        string  `bson:"id,omitempty"`
 	FirstName string  `bson:"firstName,omitempty"`
 	LastName  string  `bson:"lastName,omitempty"`
 	Email     string  `bson:"email,omitempty"`
@@ -45,8 +45,8 @@ func (db *BookingCollection) Save(booking *aggregate.Booking) error {
 			Where: "Save",
 			What:  "failure to save a booking",
 			Why: errors.Meta{
-				"HotelID": booking.HotelID.Value(),
-				"ID":      booking.ID.Value(),
+				"HotelId": booking.HotelId.Value(),
+				"Id":      booking.Id.Value(),
 			},
 			Who: err,
 		})
@@ -58,7 +58,7 @@ func (db *BookingCollection) Save(booking *aggregate.Booking) error {
 func (db *BookingCollection) Update(booking *aggregate.Booking) error {
 	updatedBooking := BookingDocument(*booking.ToPrimitives())
 
-	filter := bson.D{{Key: "id", Value: booking.ID.Value()}}
+	filter := bson.D{{Key: "id", Value: booking.Id.Value()}}
 
 	_, err := db.collection.ReplaceOne(context.Background(), filter, updatedBooking)
 
@@ -67,8 +67,8 @@ func (db *BookingCollection) Update(booking *aggregate.Booking) error {
 			Where: "Update",
 			What:  "failure to update a booking",
 			Why: errors.Meta{
-				"HotelID": booking.HotelID.Value(),
-				"ID":      booking.ID.Value(),
+				"HotelId": booking.HotelId.Value(),
+				"Id":      booking.Id.Value(),
 			},
 			Who: err,
 		})
@@ -87,7 +87,7 @@ func (db *BookingCollection) Delete(id models.ValueObject[string]) error {
 			Where: "Delete",
 			What:  "failure to delete a booking",
 			Why: errors.Meta{
-				"ID": id.Value(),
+				"Id": id.Value(),
 			},
 			Who: err,
 		})
@@ -101,12 +101,12 @@ func (db *BookingCollection) Search(criteria *model.RepositorySearchCriteria) (*
 	var index string
 
 	switch {
-	case criteria.HotelID != nil:
-		filter = bson.D{{Key: "hotel_id", Value: criteria.HotelID.Value()}}
-		index = criteria.ID.Value()
-	case criteria.ID != nil:
-		filter = bson.D{{Key: "id", Value: criteria.ID.Value()}}
-		index = criteria.ID.Value()
+	case criteria.HotelId != nil:
+		filter = bson.D{{Key: "hotelId", Value: criteria.HotelId.Value()}}
+		index = criteria.Id.Value()
+	case criteria.Id != nil:
+		filter = bson.D{{Key: "id", Value: criteria.Id.Value()}}
+		index = criteria.Id.Value()
 	case criteria.Email != nil:
 		filter = bson.D{{Key: "email", Value: criteria.Email.Value()}}
 		index = criteria.Email.Value()

@@ -5,11 +5,11 @@ import (
 )
 
 func RandomQuery() *Query {
-	hotelID, _ := valueobj.RandomId()
-	ID, _ := valueobj.RandomId()
+	hotelId, _ := valueobj.RandomId()
+	Id, _ := valueobj.RandomId()
 
 	return &Query{
-		HotelID: hotelID.Value(),
-		ID:      ID.Value(),
+		HotelId: hotelId.Value(),
+		Id:      Id.Value(),
 	}
 }

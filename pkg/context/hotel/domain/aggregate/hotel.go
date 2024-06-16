@@ -10,7 +10,7 @@ import (
 
 type Hotel struct {
 	*aggregates.AggregateRoot
-	ID       models.ValueObject[string]
+	Id       models.ValueObject[string]
 	Name     models.ValueObject[string]
 	Email    models.ValueObject[string]
 	Phone    models.ValueObject[string]
@@ -19,7 +19,7 @@ type Hotel struct {
 }
 
 type HotelPrimitive struct {
-	ID       string
+	Id       string
 	Name     string
 	Email    string
 	Phone    string
@@ -30,14 +30,14 @@ type HotelPrimitive struct {
 func create(id, name, email, phone, password string, verified bool) (*Hotel, error) {
 	aggregateRoot := aggregates.NewAggregateRoot()
 
-	idVO, errID := valueobj.NewId(id)
+	idVO, errId := valueobj.NewId(id)
 	nameVO, errName := valueobj.NewName(name)
 	emailVO, errEmail := valueobj.NewEmail(email)
 	phoneVO, errPhone := valueobj.NewPhone(phone)
 	passwordVO, errPassword := valueobj.NewPassword(password)
 	verifiedVO, errVerified := valueobj.NewVerified(verified)
 
-	err := errors.Join(errID, errName, errEmail, errPhone, errPassword, errVerified)
+	err := errors.Join(errId, errName, errEmail, errPhone, errPassword, errVerified)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "create")
@@ -45,7 +45,7 @@ func create(id, name, email, phone, password string, verified bool) (*Hotel, err
 
 	return &Hotel{
 		AggregateRoot: aggregateRoot,
-		ID:            idVO,
+		Id:            idVO,
 		Name:          nameVO,
 		Email:         emailVO,
 		Phone:         phoneVO,
@@ -56,7 +56,7 @@ func create(id, name, email, phone, password string, verified bool) (*Hotel, err
 
 func (hotel *Hotel) ToPrimitives() *HotelPrimitive {
 	return &HotelPrimitive{
-		ID:       hotel.ID.Value(),
+		Id:       hotel.Id.Value(),
 		Name:     hotel.Name.Value(),
 		Email:    hotel.Email.Value(),
 		Phone:    hotel.Phone.Value(),
@@ -67,7 +67,7 @@ func (hotel *Hotel) ToPrimitives() *HotelPrimitive {
 
 func FromPrimitives(primitive *HotelPrimitive) (*Hotel, error) {
 	hotel, err := create(
-		primitive.ID,
+		primitive.Id,
 		primitive.Name,
 		primitive.Email,
 		primitive.Phone,
@@ -100,7 +100,7 @@ func NewHotel(id, name, email, phone, password string) (*Hotel, error) {
 
 	message, err := event.NewCreatedSucceeded(&event.CreatedSucceeded{
 		Attributes: &event.CreatedSucceededAttributes{
-			ID:    id,
+			Id:    id,
 			Name:  name,
 			Email: email,
 			Phone: phone,

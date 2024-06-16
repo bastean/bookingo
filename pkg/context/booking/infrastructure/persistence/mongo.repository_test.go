@@ -49,9 +49,9 @@ func (suite *BookingMongoRepositoryTestSuite) TestUpdate() {
 
 	bookingUpdated := aggregate.RandomBooking()
 
-	bookingUpdated.HotelID = booking.HotelID
+	bookingUpdated.HotelId = booking.HotelId
 
-	bookingUpdated.ID = booking.ID
+	bookingUpdated.Id = booking.Id
 
 	suite.NoError(suite.sut.Update(booking))
 }
@@ -61,7 +61,7 @@ func (suite *BookingMongoRepositoryTestSuite) TestDelete() {
 
 	suite.NoError(suite.sut.Save(booking))
 
-	suite.NoError(suite.sut.Delete(booking.ID))
+	suite.NoError(suite.sut.Delete(booking.Id))
 }
 
 func (suite *BookingMongoRepositoryTestSuite) TestSearch() {
@@ -72,7 +72,7 @@ func (suite *BookingMongoRepositoryTestSuite) TestSearch() {
 	suite.NoError(suite.sut.Save(expected))
 
 	criteria := &model.RepositorySearchCriteria{
-		ID: expected.ID,
+		Id: expected.Id,
 	}
 
 	booking, err := suite.sut.Search(criteria)

@@ -14,7 +14,7 @@ import (
 )
 
 type HotelDocument struct {
-	ID       string `bson:"id,omitempty"`
+	Id       string `bson:"id,omitempty"`
 	Name     string `bson:"name,omitempty"`
 	Email    string `bson:"email,omitempty"`
 	Phone    string `bson:"phone,omitempty"`
@@ -49,7 +49,7 @@ func (db *HotelCollection) Save(hotel *aggregate.Hotel) error {
 			Where: "Save",
 			What:  "failure to save a hotel",
 			Why: errors.Meta{
-				"ID": hotel.ID.Value(),
+				"Id": hotel.Id.Value(),
 			},
 			Who: err,
 		})
@@ -61,7 +61,7 @@ func (db *HotelCollection) Save(hotel *aggregate.Hotel) error {
 func (db *HotelCollection) Update(hotel *aggregate.Hotel) error {
 	updatedHotel := HotelDocument(*hotel.ToPrimitives())
 
-	filter := bson.D{{Key: "id", Value: hotel.ID.Value()}}
+	filter := bson.D{{Key: "id", Value: hotel.Id.Value()}}
 
 	hashed, err := db.hashing.Hash(hotel.Password.Value())
 
@@ -78,7 +78,7 @@ func (db *HotelCollection) Update(hotel *aggregate.Hotel) error {
 			Where: "Update",
 			What:  "failure to update a hotel",
 			Why: errors.Meta{
-				"ID": hotel.ID.Value(),
+				"Id": hotel.Id.Value(),
 			},
 			Who: err,
 		})
@@ -99,7 +99,7 @@ func (db *HotelCollection) Verify(id models.ValueObject[string]) error {
 			Where: "Verify",
 			What:  "failure to verify a hotel",
 			Why: errors.Meta{
-				"ID": id.Value(),
+				"Id": id.Value(),
 			},
 			Who: err,
 		})
@@ -118,7 +118,7 @@ func (db *HotelCollection) Delete(id models.ValueObject[string]) error {
 			Where: "Delete",
 			What:  "failure to delete a hotel",
 			Why: errors.Meta{
-				"ID": id.Value(),
+				"Id": id.Value(),
 			},
 			Who: err,
 		})
@@ -141,9 +141,9 @@ func (db *HotelCollection) Search(criteria model.RepositorySearchCriteria) (*agg
 		index = criteria.Email.Value()
 	}
 
-	if criteria.ID != nil {
-		filter = bson.D{{Key: "id", Value: criteria.ID.Value()}}
-		index = criteria.ID.Value()
+	if criteria.Id != nil {
+		filter = bson.D{{Key: "id", Value: criteria.Id.Value()}}
+		index = criteria.Id.Value()
 	}
 
 	result := db.collection.FindOne(context.Background(), filter)

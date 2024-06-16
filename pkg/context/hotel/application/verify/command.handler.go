@@ -12,7 +12,7 @@ type CommandHandler struct {
 }
 
 func (handler *CommandHandler) Handle(command *Command) error {
-	idVO, err := valueobj.NewId(command.ID)
+	idVO, err := valueobj.NewId(command.Id)
 
 	if err != nil {
 		return errors.BubbleUp(err, "Handle")

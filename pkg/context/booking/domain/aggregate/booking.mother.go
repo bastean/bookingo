@@ -5,7 +5,7 @@ import (
 )
 
 func RandomBooking() *Booking {
-	hotelID, _ := valueobj.RandomId()
+	hotelId, _ := valueobj.RandomId()
 	id, _ := valueobj.RandomId()
 	firstName, _ := valueobj.RandomName()
 	lastName, _ := valueobj.RandomName()
@@ -18,8 +18,8 @@ func RandomBooking() *Booking {
 	total, _ := valueobj.RandomTotal()
 
 	booking, _ := NewBooking(&BookingPrimitive{
-		HotelID:   hotelID.Value(),
-		ID:        id.Value(),
+		HotelId:   hotelId.Value(),
+		Id:        id.Value(),
 		FirstName: firstName.Value(),
 		LastName:  lastName.Value(),
 		Email:     email.Value(),

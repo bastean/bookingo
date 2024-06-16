@@ -6,8 +6,8 @@ import (
 )
 
 type RepositorySearchCriteria struct {
-	HotelID models.ValueObject[string]
-	ID      models.ValueObject[string]
+	HotelId models.ValueObject[string]
+	Id      models.ValueObject[string]
 	Email   models.ValueObject[string]
 	Phone   models.ValueObject[string]
 }

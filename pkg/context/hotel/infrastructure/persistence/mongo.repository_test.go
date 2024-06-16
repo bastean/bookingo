@@ -78,7 +78,7 @@ func (suite *HotelMongoRepositoryTestSuite) TestVerify() {
 
 	suite.NoError(suite.sut.Save(hotel))
 
-	suite.NoError(suite.sut.Verify(hotel.ID))
+	suite.NoError(suite.sut.Verify(hotel.Id))
 }
 
 func (suite *HotelMongoRepositoryTestSuite) TestDelete() {
@@ -88,7 +88,7 @@ func (suite *HotelMongoRepositoryTestSuite) TestDelete() {
 
 	suite.NoError(suite.sut.Save(hotel))
 
-	suite.NoError(suite.sut.Delete(hotel.ID))
+	suite.NoError(suite.sut.Delete(hotel.Id))
 }
 
 func (suite *HotelMongoRepositoryTestSuite) TestSearch() {

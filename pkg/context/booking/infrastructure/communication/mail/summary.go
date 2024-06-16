@@ -44,8 +44,8 @@ func (client *Summary) Submit(data any) error {
 			Where: "Submit",
 			What:  "failure to send a booking summary mail",
 			Why: errors.Meta{
-				"Hotel Id":        booking.HotelID,
-				"Booking Id":      booking.ID,
+				"Hotel Id":        booking.HotelId,
+				"Booking Id":      booking.Id,
 				"SMTP Server URL": client.SMTPServerURL,
 			},
 			Who: err,

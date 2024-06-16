@@ -13,7 +13,7 @@ func RandomCreatedSucceeded() *messages.Message {
 
 	event, _ := NewCreatedSucceeded(&CreatedSucceeded{
 		Attributes: &CreatedSucceededAttributes{
-			ID:    id.Value(),
+			Id:    id.Value(),
 			Name:  name.Value(),
 			Email: email.Value(),
 			Phone: phone.Value(),

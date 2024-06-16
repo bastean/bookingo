@@ -8,7 +8,7 @@ import (
 )
 
 type Input struct {
-	HotelID, ID models.ValueObject[string]
+	HotelId, Id models.ValueObject[string]
 }
 
 type CommandHandler struct {
@@ -16,18 +16,18 @@ type CommandHandler struct {
 }
 
 func (handler *CommandHandler) Handle(command *Command) error {
-	hotelID, errHotelID := valueobj.NewId(command.HotelID)
-	id, errID := valueobj.NewId(command.ID)
+	hotelId, errHotelId := valueobj.NewId(command.HotelId)
+	id, errId := valueobj.NewId(command.Id)
 
-	err := errors.Join(errHotelID, errID)
+	err := errors.Join(errHotelId, errId)
 
 	if err != nil {
 		return errors.BubbleUp(err, "Handle")
 	}
 
 	_, err = handler.UseCase.Run(&Input{
-		HotelID: hotelID,
-		ID:      id,
+		HotelId: hotelId,
+		Id:      id,
 	})
 
 	if err != nil {

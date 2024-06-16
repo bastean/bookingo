@@ -12,7 +12,7 @@ type QueryHandler struct {
 }
 
 func (handler *QueryHandler) Handle(query *Query) (*Response, error) {
-	id, err := valueobj.NewId(query.ID)
+	id, err := valueobj.NewId(query.Id)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Handle")

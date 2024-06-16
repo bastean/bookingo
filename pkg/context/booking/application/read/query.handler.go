@@ -8,7 +8,7 @@ import (
 )
 
 type Input struct {
-	HotelID, ID models.ValueObject[string]
+	HotelId, Id models.ValueObject[string]
 }
 
 type QueryHandler struct {
@@ -16,18 +16,18 @@ type QueryHandler struct {
 }
 
 func (handler *QueryHandler) Handle(query *Query) (*Response, error) {
-	hotelID, errHotelID := valueobj.NewId(query.HotelID)
-	id, errID := valueobj.NewId(query.ID)
+	hotelId, errHotelId := valueobj.NewId(query.HotelId)
+	id, errId := valueobj.NewId(query.Id)
 
-	err := errors.Join(errHotelID, errID)
+	err := errors.Join(errHotelId, errId)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Handle")
 	}
 
 	booking, err := handler.UseCase.Run(&Input{
-		HotelID: hotelID,
-		ID:      id,
+		HotelId: hotelId,
+		Id:      id,
 	})
 
 	if err != nil {

@@ -35,17 +35,17 @@ func (suite *BookingDeleteTestSuite) TestDelete() {
 	booking := aggregate.RandomBooking()
 
 	command := &delete.Command{
-		HotelID: booking.HotelID.Value(),
-		ID:      booking.ID.Value(),
+		HotelId: booking.HotelId.Value(),
+		Id:      booking.Id.Value(),
 	}
 
 	criteria := &model.RepositorySearchCriteria{
-		ID: booking.ID,
+		Id: booking.Id,
 	}
 
 	suite.repository.On("Search", criteria).Return(booking)
 
-	suite.repository.On("Delete", booking.ID)
+	suite.repository.On("Delete", booking.Id)
 
 	suite.NoError(suite.sut.Handle(command))
 

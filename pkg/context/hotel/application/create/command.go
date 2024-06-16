@@ -1,7 +1,7 @@
 package create
 
 type Command struct {
-	ID       string
+	Id       string
 	Name     string
 	Email    string
 	Phone    string

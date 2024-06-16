@@ -13,7 +13,7 @@ type Verify struct {
 
 func (verify *Verify) Run(id models.ValueObject[string]) (types.Empty, error) {
 	hotelRegistered, err := verify.Repository.Search(model.RepositorySearchCriteria{
-		ID: id,
+		Id: id,
 	})
 
 	if err != nil {

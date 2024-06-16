@@ -12,14 +12,14 @@ type Read struct {
 
 func (read *Read) Run(input *Input) (*aggregate.Booking, error) {
 	booking, err := read.Repository.Search(&model.RepositorySearchCriteria{
-		ID: input.ID,
+		Id: input.Id,
 	})
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "Run")
 	}
 
-	if input.HotelID.Value() != booking.HotelID.Value() {
+	if input.HotelId.Value() != booking.HotelId.Value() {
 		return nil, nil
 	}
 

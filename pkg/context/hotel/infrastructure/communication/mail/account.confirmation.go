@@ -35,7 +35,7 @@ func (client *AccountConfirmation) Submit(data any) error {
 
 	message.Write([]byte(fmt.Sprintf("%v\n%v\n", headers, client.MIMEHeaders)))
 
-	confirmationLink := fmt.Sprintf("%v/verify/%v", client.ServerURL, hotel.ID)
+	confirmationLink := fmt.Sprintf("%v/verify/%v", client.ServerURL, hotel.Id)
 
 	AccountConfirmationTemplate(hotel.Name, confirmationLink).Render(context.Background(), &message)
 
@@ -46,7 +46,7 @@ func (client *AccountConfirmation) Submit(data any) error {
 			Where: "Submit",
 			What:  "failure to send an account confirmation mail",
 			Why: errors.Meta{
-				"Hotel Id":        hotel.ID,
+				"Hotel Id":        hotel.Id,
 				"SMTP Server URL": client.SMTPServerURL,
 			},
 			Who: err,

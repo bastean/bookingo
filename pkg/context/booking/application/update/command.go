@@ -1,8 +1,8 @@
 package update
 
 type Command struct {
-	HotelID   string
-	ID        string
+	HotelId   string
+	Id        string
 	FirstName string
 	LastName  string
 	Email     string

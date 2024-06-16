@@ -39,7 +39,7 @@ func (suite *BookingUpdateTestSuite) TestUpdate() {
 	booking, _ := aggregate.NewBooking(&primitive)
 
 	criteria := &model.RepositorySearchCriteria{
-		ID: booking.ID,
+		Id: booking.Id,
 	}
 
 	suite.repository.On("Search", criteria).Return(booking)
