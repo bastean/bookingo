@@ -31,9 +31,9 @@ func (client *Summary) Submit(data any) error {
 
 	var message bytes.Buffer
 
-	headers := fmt.Sprintf("From: %s\n"+"To: %s\n"+"Subject: Booking Summary", client.Username, booking.Email)
+	headers := fmt.Sprintf("From: %v\n"+"To: %v\n"+"Subject: Booking Summary", client.Username, booking.Email)
 
-	message.Write([]byte(fmt.Sprintf("%s\n%s\n", headers, client.MIMEHeaders)))
+	message.Write([]byte(fmt.Sprintf("%v\n%v\n", headers, client.MIMEHeaders)))
 
 	SummaryTemplate(booking).Render(context.Background(), &message)
 

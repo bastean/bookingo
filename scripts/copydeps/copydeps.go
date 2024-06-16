@@ -26,7 +26,7 @@ const lodashStaticPath = staticPath + "/lodash.com"
 
 func failOnError(err error, msg string) {
 	if err != nil {
-		log.Panicf("%s: %s", msg, err)
+		log.Panicf("%v: %v", msg, err)
 	}
 }
 
@@ -34,33 +34,33 @@ func createDirectory(path string) {
 	err := os.MkdirAll(path, os.ModePerm)
 
 	if err != nil {
-		failOnError(err, fmt.Sprintf("Failed to create \"%s\"", path))
+		failOnError(err, fmt.Sprintf("Failed to create \"%v\"", path))
 	}
 
-	log.Printf("Created: \"%s\"", path)
+	log.Printf("Created: \"%v\"", path)
 }
 
 func copyFile(filename, sourcePath, targetPath string) {
 	data, err := os.ReadFile(filepath.Join(sourcePath, filepath.Base(filename)))
 
 	if err != nil {
-		failOnError(err, fmt.Sprintf("Failed to read \"%s\" from \"%s\"", filename, sourcePath))
+		failOnError(err, fmt.Sprintf("Failed to read \"%v\" from \"%v\"", filename, sourcePath))
 	}
 
 	err = os.WriteFile(filepath.Join(targetPath, filepath.Base(filename)), data, os.ModePerm)
 
 	if err != nil {
-		failOnError(err, fmt.Sprintf("Failed to write \"%s\" on \"%s\"", filename, targetPath))
+		failOnError(err, fmt.Sprintf("Failed to write \"%v\" on \"%v\"", filename, targetPath))
 	}
 
-	log.Printf("Created: \"%s\"", filepath.Join(targetPath, filepath.Base(filename)))
+	log.Printf("Created: \"%v\"", filepath.Join(targetPath, filepath.Base(filename)))
 }
 
 func copyDeps(filenames []string, sourcePath, targetPath string) {
 	files, err := os.ReadDir(sourcePath)
 
 	if err != nil {
-		failOnError(err, fmt.Sprintf("Failed to copy \"%s\" from \"%s\"", filenames, sourcePath))
+		failOnError(err, fmt.Sprintf("Failed to copy \"%v\" from \"%v\"", filenames, sourcePath))
 	}
 
 	createDirectory(targetPath)
@@ -90,7 +90,7 @@ func main() {
 	err := os.RemoveAll(staticPath)
 
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
-		failOnError(err, fmt.Sprintf("Failed to remove \"%s\"", staticPath))
+		failOnError(err, fmt.Sprintf("Failed to remove \"%v\"", staticPath))
 	}
 
 	createDirectory(staticPath)
