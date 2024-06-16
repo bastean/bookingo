@@ -44,11 +44,11 @@ func (suite *HotelDeleteTestSuite) TestDelete() {
 		Password: hotel.Password.Value(),
 	}
 
-	filter := model.RepositorySearchCriteria{
+	criteria := &model.RepositorySearchCriteria{
 		Id: hotel.Id,
 	}
 
-	suite.repository.On("Search", filter).Return(hotel)
+	suite.repository.On("Search", criteria).Return(hotel)
 
 	suite.hashing.On("IsNotEqual", hotel.Password.Value(), hotel.Password.Value()).Return(false)
 

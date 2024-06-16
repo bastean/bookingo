@@ -37,11 +37,11 @@ func (suite *HotelReadTestSuite) TestLogin() {
 		Id: hotel.Id.Value(),
 	}
 
-	filter := model.RepositorySearchCriteria{
+	criteria := &model.RepositorySearchCriteria{
 		Id: hotel.Id,
 	}
 
-	suite.repository.On("Search", filter).Return(hotel)
+	suite.repository.On("Search", criteria).Return(hotel)
 
 	expected := hotel.ToPrimitives()
 

@@ -41,15 +41,13 @@ func (suite *HotelVerifyTestSuite) TestVerify() {
 
 	hotel.Id = idVO
 
-	hotel.Password = nil
-
-	filter := model.RepositorySearchCriteria{
+	criteria := &model.RepositorySearchCriteria{
 		Id: idVO,
 	}
 
-	suite.repository.On("Search", filter).Return(hotel)
+	suite.repository.On("Search", criteria).Return(hotel)
 
-	suite.repository.On("Update", hotel)
+	suite.repository.On("Verify", idVO)
 
 	suite.NoError(suite.sut.Handle(command))
 

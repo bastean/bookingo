@@ -45,16 +45,16 @@ func (suite *HotelUpdateTestSuite) TestUpdate() {
 		Name:     command.Name,
 		Email:    command.Email,
 		Phone:    command.Phone,
-		Password: command.Password,
+		Password: command.UpdatedPassword,
 	})
 
 	idVO, _ := valueobj.NewId(command.Id)
 
-	filter := model.RepositorySearchCriteria{
+	criteria := &model.RepositorySearchCriteria{
 		Id: idVO,
 	}
 
-	suite.repository.On("Search", filter).Return(hotel)
+	suite.repository.On("Search", criteria).Return(hotel)
 
 	suite.hashing.On("IsNotEqual", hotel.Password.Value(), command.Password).Return(false)
 
