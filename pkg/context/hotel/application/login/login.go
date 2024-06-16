@@ -14,7 +14,7 @@ type Login struct {
 }
 
 func (login *Login) Run(input *Input) (*aggregate.Hotel, error) {
-	hotel, err := login.Repository.Search(model.RepositorySearchCriteria{
+	hotel, err := login.Repository.Search(&model.RepositorySearchCriteria{
 		Email: input.Email,
 	})
 

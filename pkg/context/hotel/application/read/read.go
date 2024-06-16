@@ -12,7 +12,7 @@ type Read struct {
 }
 
 func (read *Read) Run(id models.ValueObject[string]) (*aggregate.Hotel, error) {
-	hotel, err := read.Repository.Search(model.RepositorySearchCriteria{
+	hotel, err := read.Repository.Search(&model.RepositorySearchCriteria{
 		Id: id,
 	})
 

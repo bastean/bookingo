@@ -127,7 +127,7 @@ func (db *HotelCollection) Delete(id models.ValueObject[string]) error {
 	return nil
 }
 
-func (db *HotelCollection) Search(criteria model.RepositorySearchCriteria) (*aggregate.Hotel, error) {
+func (db *HotelCollection) Search(criteria *model.RepositorySearchCriteria) (*aggregate.Hotel, error) {
 	var filter bson.D
 	var index string
 

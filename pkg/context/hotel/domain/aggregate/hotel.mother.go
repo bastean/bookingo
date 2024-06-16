@@ -11,7 +11,13 @@ func RandomHotel() *Hotel {
 	phone, _ := valueobj.RandomPhone()
 	password, _ := valueobj.RandomPassword()
 
-	hotel, _ := NewHotel(id.Value(), name.Value(), email.Value(), phone.Value(), password.Value())
+	hotel, _ := NewHotel(&HotelPrimitive{
+		Id:       id.Value(),
+		Name:     name.Value(),
+		Email:    email.Value(),
+		Phone:    phone.Value(),
+		Password: password.Value(),
+	})
 
 	return hotel
 }

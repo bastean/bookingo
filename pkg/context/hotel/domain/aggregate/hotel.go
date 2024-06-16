@@ -27,15 +27,15 @@ type HotelPrimitive struct {
 	Verified bool
 }
 
-func create(id, name, email, phone, password string, verified bool) (*Hotel, error) {
+func create(primitive *HotelPrimitive) (*Hotel, error) {
 	aggregateRoot := aggregates.NewAggregateRoot()
 
-	idVO, errId := valueobj.NewId(id)
-	nameVO, errName := valueobj.NewName(name)
-	emailVO, errEmail := valueobj.NewEmail(email)
-	phoneVO, errPhone := valueobj.NewPhone(phone)
-	passwordVO, errPassword := valueobj.NewPassword(password)
-	verifiedVO, errVerified := valueobj.NewVerified(verified)
+	idVO, errId := valueobj.NewId(primitive.Id)
+	nameVO, errName := valueobj.NewName(primitive.Name)
+	emailVO, errEmail := valueobj.NewEmail(primitive.Email)
+	phoneVO, errPhone := valueobj.NewPhone(primitive.Phone)
+	passwordVO, errPassword := valueobj.NewPassword(primitive.Password)
+	verifiedVO, errVerified := valueobj.NewVerified(primitive.Verified)
 
 	err := errors.Join(errId, errName, errEmail, errPhone, errPassword, errVerified)
 
@@ -66,14 +66,7 @@ func (hotel *Hotel) ToPrimitives() *HotelPrimitive {
 }
 
 func FromPrimitives(primitive *HotelPrimitive) (*Hotel, error) {
-	hotel, err := create(
-		primitive.Id,
-		primitive.Name,
-		primitive.Email,
-		primitive.Phone,
-		primitive.Password,
-		primitive.Verified,
-	)
+	hotel, err := create(primitive)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "FromPrimitives")
@@ -82,17 +75,10 @@ func FromPrimitives(primitive *HotelPrimitive) (*Hotel, error) {
 	return hotel, nil
 }
 
-func NewHotel(id, name, email, phone, password string) (*Hotel, error) {
-	verified := false
+func NewHotel(primitive *HotelPrimitive) (*Hotel, error) {
+	primitive.Verified = false
 
-	hotel, err := create(
-		id,
-		name,
-		email,
-		phone,
-		password,
-		verified,
-	)
+	hotel, err := create(primitive)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "NewHotel")
@@ -100,10 +86,10 @@ func NewHotel(id, name, email, phone, password string) (*Hotel, error) {
 
 	message, err := event.NewCreatedSucceeded(&event.CreatedSucceeded{
 		Attributes: &event.CreatedSucceededAttributes{
-			Id:    id,
-			Name:  name,
-			Email: email,
-			Phone: phone,
+			Id:    primitive.Id,
+			Name:  primitive.Name,
+			Email: primitive.Email,
+			Phone: primitive.Phone,
 		},
 	})
 

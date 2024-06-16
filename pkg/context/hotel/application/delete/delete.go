@@ -14,7 +14,7 @@ type Delete struct {
 }
 
 func (delete *Delete) Run(input *Input) (types.Empty, error) {
-	hotel, err := delete.Repository.Search(model.RepositorySearchCriteria{
+	hotel, err := delete.Repository.Search(&model.RepositorySearchCriteria{
 		Id: input.Id,
 	})
 

@@ -100,11 +100,11 @@ func (suite *HotelMongoRepositoryTestSuite) TestSearch() {
 
 	suite.NoError(suite.sut.Save(expected))
 
-	filter := model.RepositorySearchCriteria{
+	criteria := &model.RepositorySearchCriteria{
 		Email: expected.Email,
 	}
 
-	hotel, err := suite.sut.Search(filter)
+	hotel, err := suite.sut.Search(criteria)
 
 	suite.NoError(err)
 

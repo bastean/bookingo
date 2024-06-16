@@ -14,7 +14,7 @@ type Update struct {
 }
 
 func (update *Update) Run(input *Input) (types.Empty, error) {
-	hotelRegistered, err := update.Repository.Search(model.RepositorySearchCriteria{
+	hotelRegistered, err := update.Repository.Search(&model.RepositorySearchCriteria{
 		Id: input.Hotel.Id,
 	})
 

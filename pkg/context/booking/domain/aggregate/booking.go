@@ -37,20 +37,20 @@ type BookingPrimitive struct {
 	Total     float32
 }
 
-func create(hotelId, id, firstName, lastName, email, phone, checkIn, checkOut, room, currency string, total float32) (*Booking, error) {
+func create(primitive *BookingPrimitive) (*Booking, error) {
 	aggregateRoot := aggregates.NewAggregateRoot()
 
-	hotelIdVO, errHotelId := valueobj.NewId(hotelId)
-	idVO, errId := valueobj.NewId(id)
-	firstNameVO, errFirstName := valueobj.NewName(firstName)
-	lastNameVO, errLastName := valueobj.NewName(lastName)
-	emailVO, errEmail := valueobj.NewEmail(email)
-	phoneVO, errPhone := valueobj.NewPhone(phone)
-	checkInVO, errCheckIn := valueobj.NewCheck(checkIn)
-	checkOutVO, errCheckOut := valueobj.NewCheck(checkOut)
-	roomVO, errRoom := valueobj.NewRoom(room)
-	currencyVO, errCurrency := valueobj.NewCurrency(currency)
-	totalVO, errTotal := valueobj.NewTotal(total)
+	hotelIdVO, errHotelId := valueobj.NewId(primitive.HotelId)
+	idVO, errId := valueobj.NewId(primitive.Id)
+	firstNameVO, errFirstName := valueobj.NewName(primitive.FirstName)
+	lastNameVO, errLastName := valueobj.NewName(primitive.LastName)
+	emailVO, errEmail := valueobj.NewEmail(primitive.Email)
+	phoneVO, errPhone := valueobj.NewPhone(primitive.Phone)
+	checkInVO, errCheckIn := valueobj.NewCheck(primitive.CheckIn)
+	checkOutVO, errCheckOut := valueobj.NewCheck(primitive.CheckOut)
+	roomVO, errRoom := valueobj.NewRoom(primitive.Room)
+	currencyVO, errCurrency := valueobj.NewCurrency(primitive.Currency)
+	totalVO, errTotal := valueobj.NewTotal(primitive.Total)
 
 	err := errors.Join(errHotelId, errId, errFirstName, errLastName, errEmail, errPhone, errCheckIn, errCheckOut, errRoom, errCurrency, errTotal)
 
@@ -91,19 +91,7 @@ func (booking *Booking) ToPrimitives() *BookingPrimitive {
 }
 
 func FromPrimitives(primitive *BookingPrimitive) (*Booking, error) {
-	booking, err := create(
-		primitive.HotelId,
-		primitive.Id,
-		primitive.FirstName,
-		primitive.LastName,
-		primitive.Email,
-		primitive.Phone,
-		primitive.CheckIn,
-		primitive.CheckOut,
-		primitive.Room,
-		primitive.Currency,
-		primitive.Total,
-	)
+	booking, err := create(primitive)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "FromPrimitives")
@@ -113,19 +101,7 @@ func FromPrimitives(primitive *BookingPrimitive) (*Booking, error) {
 }
 
 func NewBooking(primitive *BookingPrimitive) (*Booking, error) {
-	booking, err := create(
-		primitive.HotelId,
-		primitive.Id,
-		primitive.FirstName,
-		primitive.LastName,
-		primitive.Email,
-		primitive.Phone,
-		primitive.CheckIn,
-		primitive.CheckOut,
-		primitive.Room,
-		primitive.Currency,
-		primitive.Total,
-	)
+	booking, err := create(primitive)
 
 	if err != nil {
 		return nil, errors.BubbleUp(err, "NewBooking")

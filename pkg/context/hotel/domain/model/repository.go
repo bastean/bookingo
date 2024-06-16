@@ -16,5 +16,5 @@ type Repository interface {
 	Update(hotel *aggregate.Hotel) error
 	Verify(id models.ValueObject[string]) error
 	Delete(id models.ValueObject[string]) error
-	Search(filter RepositorySearchCriteria) (*aggregate.Hotel, error)
+	Search(criteria *RepositorySearchCriteria) (*aggregate.Hotel, error)
 }

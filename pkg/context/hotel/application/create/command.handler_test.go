@@ -38,7 +38,13 @@ func (suite *HotelCreateTestSuite) SetupTest() {
 func (suite *HotelCreateTestSuite) TestCreate() {
 	command := create.RandomCommand()
 
-	hotel, _ := aggregate.NewHotel(command.Id, command.Name, command.Email, command.Phone, command.Password)
+	hotel, _ := aggregate.NewHotel(&aggregate.HotelPrimitive{
+		Id:       command.Id,
+		Name:     command.Name,
+		Email:    command.Email,
+		Phone:    command.Phone,
+		Password: command.Password,
+	})
 
 	messages := hotel.Messages
 

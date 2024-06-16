@@ -18,7 +18,13 @@ type CommandHandler struct {
 }
 
 func (handler *CommandHandler) Handle(command *Command) error {
-	hotel, err := aggregate.NewHotel(command.Id, command.Name, command.Email, command.Phone, command.Password)
+	hotel, err := aggregate.NewHotel(&aggregate.HotelPrimitive{
+		Id:       command.Id,
+		Name:     command.Name,
+		Email:    command.Email,
+		Phone:    command.Phone,
+		Password: command.Password,
+	})
 
 	if err != nil {
 		return errors.BubbleUp(err, "Handle")
