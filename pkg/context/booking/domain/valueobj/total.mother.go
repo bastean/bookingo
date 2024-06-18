@@ -10,7 +10,7 @@ func RandomTotal() models.ValueObject[float32] {
 	value, err := NewTotal(services.Create.Float32())
 
 	if err != nil {
-		errors.Panic(err.Error(), "RandomRoom")
+		errors.Panic(err.Error(), "RandomTotal")
 	}
 
 	return value

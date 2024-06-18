@@ -10,7 +10,7 @@ func RandomPassword() models.ValueObject[string] {
 	value, err := NewPassword(services.Create.Regex(`[\W\w]{8,64}`))
 
 	if err != nil {
-		errors.Panic(err.Error(), "RandomName")
+		errors.Panic(err.Error(), "RandomPassword")
 	}
 
 	return value

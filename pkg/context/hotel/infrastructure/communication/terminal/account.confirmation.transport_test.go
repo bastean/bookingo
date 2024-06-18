@@ -38,7 +38,7 @@ func (suite *HotelTerminalAccountConfirmationTransportTestSuite) TestSubmit() {
 
 	json.Unmarshal(message.Attributes, hotel)
 
-	confirmationLink := fmt.Sprintf("Hi %v, please confirm your account through this link: %v/verify/%v", hotel.Name, suite.serverURL, hotel.Id)
+	confirmationLink := fmt.Sprintf("Hi %s, please confirm your account through this link: %s/verify/%s", hotel.Name, suite.serverURL, hotel.Id)
 
 	suite.logger.Mock.On("Info", confirmationLink)
 

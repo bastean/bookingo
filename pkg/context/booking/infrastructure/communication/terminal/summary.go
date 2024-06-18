@@ -28,15 +28,15 @@ func (client *Summary) Submit(data any) error {
 
 	summary := fmt.Sprintf(
 		`
-		Hi %v %v, 
+		Hi %s %s, 
 		
 		Here is the summary of your booking:
 
-		Check-in: %v
-		Check-out: %v
-		Room: %v
+		Check-in: %s
+		Check-out: %s
+		Room: %s
 
-		Total(%v): %v
+		Total(%s): %s
 		`,
 		booking.FirstName, booking.LastName,
 		booking.CheckIn, booking.CheckOut,
