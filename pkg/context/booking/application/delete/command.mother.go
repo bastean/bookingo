@@ -5,8 +5,8 @@ import (
 )
 
 func RandomCommand() *Command {
-	hotelId, _ := valueobj.RandomId()
-	id, _ := valueobj.RandomId()
+	hotelId := valueobj.RandomId()
+	id := valueobj.RandomId()
 
 	return &Command{
 		HotelId: hotelId.Value(),

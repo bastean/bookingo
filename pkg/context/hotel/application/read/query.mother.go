@@ -5,7 +5,7 @@ import (
 )
 
 func RandomQuery() *Query {
-	id, _ := valueobj.RandomId()
+	id := valueobj.RandomId()
 
 	return &Query{
 		Id: id.Value(),

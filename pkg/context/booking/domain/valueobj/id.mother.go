@@ -1,12 +1,19 @@
 package valueobj
 
 import (
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
-func RandomId() (models.ValueObject[string], error) {
-	return NewId(services.Create.UUID())
+func RandomId() models.ValueObject[string] {
+	value, err := NewId(services.Create.UUID())
+
+	if err != nil {
+		errors.Panic(err.Error(), "RandomId")
+	}
+
+	return value
 }
 
 func InvalidId() (string, error) {

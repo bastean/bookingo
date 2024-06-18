@@ -5,8 +5,8 @@ import (
 )
 
 func RandomQuery() *Query {
-	email, _ := valueobj.RandomEmail()
-	password, _ := valueobj.RandomPassword()
+	email := valueobj.RandomEmail()
+	password := valueobj.RandomPassword()
 
 	return &Query{
 		Email:    email.Value(),

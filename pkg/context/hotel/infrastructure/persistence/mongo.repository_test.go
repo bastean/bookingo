@@ -60,7 +60,7 @@ func (suite *HotelMongoRepositoryTestSuite) TestUpdate() {
 
 	suite.NoError(suite.sut.Save(hotel))
 
-	password, _ := valueobj.RandomPassword()
+	password := valueobj.RandomPassword()
 
 	hotel.Password = password
 

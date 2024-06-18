@@ -34,7 +34,7 @@ type BookingCollection struct {
 func (db *BookingCollection) Save(booking *aggregate.Booking) error {
 	newBooking := BookingDocument(*booking.ToPrimitives())
 
-	_, err := db.collection.InsertOne(context.Background(), newBooking)
+	_, err := db.collection.InsertOne(context.Background(), &newBooking)
 
 	if mongo.IsDuplicateKeyError(err) {
 		return errors.BubbleUp(persistences.HandleMongoDuplicateKeyError(err), "Save")
@@ -60,7 +60,7 @@ func (db *BookingCollection) Update(booking *aggregate.Booking) error {
 
 	filter := bson.D{{Key: "id", Value: booking.Id.Value()}}
 
-	_, err := db.collection.ReplaceOne(context.Background(), filter, updatedBooking)
+	_, err := db.collection.ReplaceOne(context.Background(), filter, &updatedBooking)
 
 	if err != nil {
 		return errors.NewInternal(&errors.Bubble{

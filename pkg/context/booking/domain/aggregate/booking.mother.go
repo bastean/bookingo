@@ -2,22 +2,23 @@ package aggregate
 
 import (
 	"github.com/bastean/bookingo/pkg/context/booking/domain/valueobj"
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 )
 
 func RandomBooking() *Booking {
-	hotelId, _ := valueobj.RandomId()
-	id, _ := valueobj.RandomId()
-	firstName, _ := valueobj.RandomName()
-	lastName, _ := valueobj.RandomName()
-	email, _ := valueobj.RandomEmail()
-	phone, _ := valueobj.RandomPhone()
-	checkIn, _ := valueobj.RandomCheck()
-	checkOut, _ := valueobj.RandomCheck()
-	room, _ := valueobj.RandomRoom()
-	currency, _ := valueobj.RandomCurrency()
-	total, _ := valueobj.RandomTotal()
+	hotelId := valueobj.RandomId()
+	id := valueobj.RandomId()
+	firstName := valueobj.RandomName()
+	lastName := valueobj.RandomName()
+	email := valueobj.RandomEmail()
+	phone := valueobj.RandomPhone()
+	checkIn := valueobj.RandomCheck()
+	checkOut := valueobj.RandomCheck()
+	room := valueobj.RandomRoom()
+	currency := valueobj.RandomCurrency()
+	total := valueobj.RandomTotal()
 
-	booking, _ := NewBooking(&BookingPrimitive{
+	booking, err := NewBooking(&BookingPrimitive{
 		HotelId:   hotelId.Value(),
 		Id:        id.Value(),
 		FirstName: firstName.Value(),
@@ -30,6 +31,10 @@ func RandomBooking() *Booking {
 		Currency:  currency.Value(),
 		Total:     total.Value(),
 	})
+
+	if err != nil {
+		errors.Panic(err.Error(), "RandomBooking")
+	}
 
 	return booking
 }

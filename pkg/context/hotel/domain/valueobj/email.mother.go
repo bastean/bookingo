@@ -1,12 +1,19 @@
 package valueobj
 
 import (
+	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
-func RandomEmail() (models.ValueObject[string], error) {
-	return NewEmail(services.Create.Email())
+func RandomEmail() models.ValueObject[string] {
+	value, err := NewEmail(services.Create.Email())
+
+	if err != nil {
+		errors.Panic(err.Error(), "RandomEmail")
+	}
+
+	return value
 }
 
 func InvalidEmail() (string, error) {

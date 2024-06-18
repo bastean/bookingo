@@ -19,7 +19,7 @@ func (suite *HotelBcryptHashingTestSuite) SetupTest() {
 }
 
 func (suite *HotelBcryptHashingTestSuite) TestHash() {
-	password, _ := valueobj.RandomPassword()
+	password := valueobj.RandomPassword()
 
 	plain := password.Value()
 
@@ -31,7 +31,7 @@ func (suite *HotelBcryptHashingTestSuite) TestHash() {
 }
 
 func (suite *HotelBcryptHashingTestSuite) TestIsNotEqual() {
-	password, _ := valueobj.RandomPassword()
+	password := valueobj.RandomPassword()
 
 	plain := password.Value()
 
