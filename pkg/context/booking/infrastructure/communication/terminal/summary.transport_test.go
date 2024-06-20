@@ -43,7 +43,7 @@ func (suite *BookingTerminalSummaryTransportTestSuite) TestSubmit() {
 		Check-out: %s
 		Room: %s
 
-		Total(%s): %s
+		Total(%s): %g
 		`,
 		booking.FirstName, booking.LastName,
 		booking.CheckIn, booking.CheckOut,

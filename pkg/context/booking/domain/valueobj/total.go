@@ -29,7 +29,7 @@ func NewTotal(total float32) (models.ValueObject[float32], error) {
 			Where: "NewTotal",
 			What:  "invalid total value",
 			Why: errors.Meta{
-				"Total": fmt.Sprintf("%s", total),
+				"Total": fmt.Sprintf("%g", total),
 			},
 		})
 	}

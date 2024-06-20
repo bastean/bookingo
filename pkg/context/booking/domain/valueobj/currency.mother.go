@@ -3,11 +3,11 @@ package valueobj
 import (
 	"github.com/bastean/bookingo/pkg/context/shared/domain/errors"
 	"github.com/bastean/bookingo/pkg/context/shared/domain/models"
-	"github.com/bastean/bookingo/pkg/context/shared/domain/services"
 )
 
 func RandomCurrency() models.ValueObject[string] {
-	value, err := NewCurrency(services.Create.CurrencyShort())
+	// TODO: services.Create.CurrencyShort()
+	value, err := NewCurrency("USD")
 
 	if err != nil {
 		errors.Panic(err.Error(), "RandomCurrency")

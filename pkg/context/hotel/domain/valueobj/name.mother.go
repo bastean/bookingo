@@ -7,7 +7,8 @@ import (
 )
 
 func RandomName() models.ValueObject[string] {
-	value, err := NewName(services.Create.Regex(`^[\w\s-]{1,64}$`))
+	// TODO: services.Create.Regex(`^[\w\s-]{1,64}$`)
+	value, err := NewName(services.Create.FirstName())
 
 	if err != nil {
 		errors.Panic(err.Error(), "RandomName")

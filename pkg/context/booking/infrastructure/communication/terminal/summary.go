@@ -36,7 +36,7 @@ func (client *Summary) Submit(data any) error {
 		Check-out: %s
 		Room: %s
 
-		Total(%s): %s
+		Total(%s): %g
 		`,
 		booking.FirstName, booking.LastName,
 		booking.CheckIn, booking.CheckOut,

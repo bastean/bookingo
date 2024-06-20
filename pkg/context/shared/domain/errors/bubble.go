@@ -21,7 +21,7 @@ func (err *Bubble) Error() string {
 		why, err := json.Marshal(err.Why)
 
 		if err != nil {
-			Panic(fmt.Sprintf("cannot json encoding why from error bubble: %s: [%s]", message, err.Error()), "Error")
+			Panic(fmt.Sprintf("cannot json encoding \"why\" from error bubble: %s: [%s]", message, err.Error()), "Error")
 		}
 
 		message = fmt.Sprintf("%s: %s", message, why)

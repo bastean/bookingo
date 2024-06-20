@@ -25,7 +25,7 @@ templ SummaryTemplate(booking *event.CreatedSucceededAttributes) {
 					<p>Check-out: { booking.CheckOut }</p>
 					<p>Room: { booking.Room }</p>
 					<br/>
-					<b>Total({ booking.Currency }): { fmt.Sprintf("%s", booking.Total) }</b>
+					<b>Total({ booking.Currency }): { fmt.Sprintf("%g", booking.Total) }</b>
 				</div>
 				<div style="margin-top: 16px" align="center">
 					<a
